@@ -1,123 +1,116 @@
 "use client";
 
-import { useState } from "react";
-import { Package, Truck, CheckCircle2, Plane } from "lucide-react";
+import Link from "next/link";
+import { ArrowLeft, Package, MapPin, Truck, AlertCircle, ShoppingBag, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export default function OrderTrackingPage() {
-    const [orderNumber, setOrderNumber] = useState('');
-    const [email, setEmail] = useState('');
-    const [isSearching, setIsSearching] = useState(false);
-    const [hasSearched, setHasSearched] = useState(false);
-
-    const handleTrackSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSearching(true);
-
-        // Simulate API call
-        setTimeout(() => {
-            setIsSearching(false);
-            setHasSearched(true);
-        }, 1200);
-    };
-
-    const steps = [
-        { name: "Order Received", status: "completed", date: "Feb 18, 2026", time: "10:30 AM", icon: Package },
-        { name: "Packed in Zambia", status: "completed", date: "Feb 19, 2026", time: "02:15 PM", icon: Package },
-        { name: "In Transit (Flight)", status: "current", date: "Feb 21, 2026", time: "08:45 AM", icon: Plane },
-        { name: "Out for Delivery (UK)", status: "upcoming", date: "", time: "", icon: Truck },
-        { name: "Delivered", status: "upcoming", date: "", time: "", icon: CheckCircle2 },
+export default function TrackOrderPage() {
+    const status = [
+        { label: "Order Received", date: "Feb 24, 10:45 AM", completed: true },
+        { label: "Quality Inspection", date: "Feb 25, 08:30 AM", completed: true },
+        { label: "In Transit", date: "Currently in Lusaka", active: true },
+        { label: "Out for Delivery", date: "Est. March 1" },
+        { label: "Delivered", date: "Pending" },
     ];
 
     return (
-        <div className="container py-12 md:py-20 min-h-[calc(100vh-10rem)]">
-            <div className="max-w-3xl mx-auto space-y-12">
-                <div className="text-center space-y-4">
-                    <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Track Your ZamOrigins Order</h1>
-                    <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-                        Enter your order number and email address to see the journey of your authentic Zambian foods.
-                    </p>
+        <div className="bg-background min-h-screen py-20 lg:py-32">
+            <div className="container max-w-5xl">
+
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
+                    <div className="space-y-6">
+                        <Link href="/dashboard" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors">
+                            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" /> My Dashboard
+                        </Link>
+                        <h1 className="text-5xl md:text-[80px] font-serif font-bold text-secondary tracking-tight leading-tighter">
+                            Trace your <br /> <span className="text-primary italic">Harvest.</span>
+                        </h1>
+                    </div>
+                    <div className="bg-white p-10 rounded-[40px] border-2 border-primary/10 shadow-sm flex items-center gap-8 group hover:shadow-lg transition-all">
+                        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                            <Package className="w-8 h-8" />
+                        </div>
+                        <div>
+                            <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-[0.2em] mb-1">Order Identifier</p>
+                            <p className="text-2xl font-serif font-bold text-secondary tracking-tight">#{"ZO-7281-AMZ"}</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="bg-card border rounded-2xl shadow-sm p-6 md:p-8">
-                    <form onSubmit={handleTrackSubmit} className="flex flex-col md:flex-row gap-4 items-end">
-                        <div className="grid gap-1.5 w-full md:flex-1">
-                            <label htmlFor="orderNum" className="text-sm font-medium">Order Number</label>
-                            <input
-                                id="orderNum"
-                                type="text"
-                                placeholder="e.g. ZAM-123456"
-                                className="h-12 flex w-full rounded-md border px-3"
-                                value={orderNumber}
-                                onChange={(e) => setOrderNumber(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div className="grid gap-1.5 w-full md:flex-1">
-                            <label htmlFor="email" className="text-sm font-medium">Email Address</label>
-                            <input
-                                id="email"
-                                type="email"
-                                placeholder="Email used at checkout"
-                                className="h-12 flex w-full rounded-md border px-3"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <Button size="lg" className="w-full md:w-auto h-12 px-8" type="submit" disabled={isSearching}>
-                            {isSearching ? "Searching..." : "Track Order"}
-                        </Button>
-                    </form>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-20">
 
-                    {hasSearched && (
-                        <div className="mt-12 border-t pt-8 animate-in fade-in duration-500">
-                            <div className="flex flex-col md:flex-row justify-between mb-8 gap-4">
-                                <div>
-                                    <h3 className="text-lg font-bold uppercase tracking-wider text-primary">Order {orderNumber || 'ZAM-857392'}</h3>
-                                    <p className="text-muted-foreground text-sm mt-1">Expected Delivery: Feb 24, 2026</p>
+                    {/* Left: Tracking Timeline */}
+                    <div className="lg:col-span-2 space-y-12">
+                        <div className="relative pl-12 space-y-16">
+                            {/* Vertical Line */}
+                            <div className="absolute left-4 top-4 bottom-4 w-0.5 bg-muted z-0" />
+
+                            {status.map((item, i) => (
+                                <div key={i} className="relative z-10 group">
+                                    <div className={`absolute -left-12 w-8 h-8 rounded-full border-4 border-white shadow-xl flex items-center justify-center transition-all ${item.completed
+                                            ? 'bg-primary'
+                                            : item.active
+                                                ? 'bg-primary border-primary/20 animate-pulse'
+                                                : 'bg-muted'
+                                        }`}>
+                                        {item.completed && <CheckCircle2 className="w-4 h-4 text-white" />}
+                                    </div>
+                                    <div className="space-y-1">
+                                        <h4 className={`text-xl font-serif font-bold ${item.completed || item.active ? 'text-secondary' : 'text-muted-foreground'}`}>
+                                            {item.label}
+                                        </h4>
+                                        <p className="text-xs font-medium text-muted-foreground tracking-widest uppercase">
+                                            {item.date}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="bg-secondary/10 text-secondary px-4 py-2 rounded-md font-semibold self-start md:self-center">
-                                    In Transit
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Right: Quick Context */}
+                    <aside className="space-y-10">
+                        <div className="bg-secondary p-10 rounded-[50px] text-white shadow-2xl relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-[80px] -translate-y-10 translate-x-10 group-hover:scale-125 transition-transform duration-700" />
+                            <h3 className="text-2xl font-serif font-bold relative z-10 mb-8 border-b border-white/10 pb-6 uppercase tracking-widest">Shipment Info</h3>
+
+                            <div className="space-y-10 relative z-10">
+                                <div className="flex items-start gap-4">
+                                    <MapPin className="w-5 h-5 text-primary shrink-0" />
+                                    <div>
+                                        <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">Carrier Location</p>
+                                        <p className="font-serif font-bold">Lusaka International Hub, ZM</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <Truck className="w-5 h-5 text-primary shrink-0" />
+                                    <div>
+                                        <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">Expected Delivery</p>
+                                        <p className="font-serif font-bold">March 5, 2026</p>
+                                    </div>
+                                </div>
+                                <div className="bg-white/5 p-6 rounded-3xl border border-white/5 space-y-2">
+                                    <div className="flex items-center gap-2 text-primary">
+                                        <AlertCircle className="w-4 h-4" />
+                                        <p className="text-[10px] font-bold uppercase tracking-widest">Courier Update</p>
+                                    </div>
+                                    <p className="text-xs text-white/50 leading-relaxed italic">"Weather in transit may cause slight delays in the Lusaka sector. We are monitoring closely."</p>
                                 </div>
                             </div>
-
-                            {/* Status Timeline */}
-                            <div className="relative border-l ml-6 md:ml-8 space-y-8">
-                                {steps.map((step, idx) => {
-                                    const Icon = step.icon;
-                                    return (
-                                        <div key={idx} className="relative pl-8 md:pl-10">
-                                            <div className={`absolute -left-5 md:-left-6 w-10 md:w-12 h-10 md:h-12 rounded-full border-4 border-background flex items-center justify-center ${step.status === 'completed' ? 'bg-primary text-primary-foreground' :
-                                                    step.status === 'current' ? 'bg-secondary text-primary-foreground ring-4 ring-secondary/20' :
-                                                        'bg-muted text-muted-foreground'
-                                                }`}>
-                                                <Icon className="w-5 h-5 md:w-6 md:h-6" />
-                                            </div>
-
-                                            <div className="pt-2">
-                                                <h4 className={`text-base md:text-lg font-bold ${step.status === 'upcoming' ? 'text-muted-foreground' : 'text-foreground'
-                                                    }`}>
-                                                    {step.name}
-                                                </h4>
-                                                {step.date && (
-                                                    <p className="text-sm text-muted-foreground mt-1 font-medium">
-                                                        {step.date} <span className="mx-1">•</span> {step.time}
-                                                    </p>
-                                                )}
-
-                                                {step.status === 'current' && (
-                                                    <div className="mt-4 bg-muted/50 p-4 rounded-lg text-sm border-l-4 border-l-secondary">
-                                                        Your package has departed Kenneth Kaunda International Airport (LUN) and is currently in transit to London Heathrow (LHR).
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
                         </div>
-                    )}
+
+                        <div className="p-10 border rounded-[50px] bg-white text-center space-y-6 shadow-sm hover:shadow-md transition-shadow">
+                            <ShoppingBag className="w-8 h-8 text-primary mx-auto" />
+                            <div className="space-y-2">
+                                <h4 className="font-serif font-bold text-secondary text-lg uppercase tracking-tight">Need Support?</h4>
+                                <p className="text-xs text-muted-foreground leading-relaxed">Our Zambian-based support team is available 24/7 to help trace your harvest.</p>
+                            </div>
+                            <Button variant="outline" className="w-full rounded-full h-12 border-muted hover:border-primary hover:text-primary uppercase font-bold text-[10px] tracking-widest">
+                                Contact Artisan
+                            </Button>
+                        </div>
+                    </aside>
+
                 </div>
             </div>
         </div>

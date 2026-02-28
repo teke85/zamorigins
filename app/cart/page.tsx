@@ -1,153 +1,132 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { Minus, Plus, Trash2, ArrowRight } from "lucide-react";
+import { Trash2, Plus, Minus, ArrowRight, ShoppingBag, ShieldCheck, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { formatGBP } from "@/lib/utils";
 
-// Mock cart items based on requirements
-const mockCartItems = [
-    { id: '1', name: 'Premium Sorghum (Mabele)', variant: '1kg', price: 8.99, quantity: 2, weight: 1.0, image: 'bg-primary/20' },
-    { id: '3', name: 'Dried Pumpkin Leaves (Chibwabwa)', variant: '500g', price: 3.99, quantity: 1, weight: 0.5, image: 'bg-primary/20' },
-];
-
 export default function CartPage() {
-    const [items, setItems] = useState(mockCartItems);
-    const [couponCode, setCouponCode] = useState('');
-
-    const updateQuantity = (id: string, newQuantity: number) => {
-        if (newQuantity < 1) return;
-        setItems(items.map(item => item.id === id ? { ...item, quantity: newQuantity } : item));
-    };
-
-    const removeItem = (id: string) => {
-        setItems(items.filter(item => item.id !== id));
-    };
+    const items = [
+        { id: '1', name: 'Premium Sorghum (Mabele)', price: 4.99, quantity: 2, weight: "500g" },
+        { id: '2', name: 'Authentic Groundnuts', price: 6.50, quantity: 1, weight: "1kg" },
+    ];
 
     const subtotal = items.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-    const totalWeight = items.reduce((acc, item) => acc + (item.weight * item.quantity), 0);
-
-    // Dummy weight-based shipping logic
-    const shipping = totalWeight > 5 ? 12.99 : (totalWeight > 2 ? 8.99 : 4.99);
-    const total = subtotal + shipping;
+    const shipping = 5.99;
 
     return (
-        <div className="container py-10 md:py-16">
-            <h1 className="text-3xl font-bold mb-8">Your Cart</h1>
+        <div className="bg-background min-h-screen py-20 lg:py-32">
+            <div className="container">
 
-            {items.length === 0 ? (
-                <div className="text-center py-16 border rounded-2xl bg-muted/20">
-                    <h2 className="text-xl font-semibold mb-2">Your cart is empty</h2>
-                    <p className="text-muted-foreground mb-6">Looks like you haven&apos;t added any items yet.</p>
-                    <Button asChild>
-                        <Link href="/shop">Continue Shopping</Link>
-                    </Button>
+                {/* Page Header */}
+                <div className="space-y-4 mb-20 text-center lg:text-left">
+                    <h1 className="text-5xl md:text-7xl font-serif font-bold text-secondary tracking-tight">Your Bag</h1>
+                    <p className="text-muted-foreground text-lg uppercase tracking-widest font-bold text-[10px]">
+                        {items.length} Curated Items Ready for Shipment
+                    </p>
                 </div>
-            ) : (
-                <div className="flex flex-col lg:flex-row gap-10">
-                    {/* Cart Items */}
-                    <div className="flex-1 space-y-6">
-                        <div className="hidden sm:grid grid-cols-12 gap-4 text-sm font-medium text-muted-foreground border-b pb-4">
-                            <div className="col-span-6">Product</div>
-                            <div className="col-span-3 text-center">Quantity</div>
-                            <div className="col-span-2 text-right">Total</div>
-                            <div className="col-span-1"></div>
-                        </div>
 
-                        {items.map((item) => (
-                            <div key={item.id} className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center border-b pb-6 sm:pb-4 border-dashed sm:border-solid">
-                                <div className="col-span-1 sm:col-span-6 flex gap-4">
-                                    <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-md shrink-0 flex items-center justify-center ${item.image}`}>
-                                        <span className="text-xs text-muted-foreground">Img</span>
-                                    </div>
-                                    <div className="flex flex-col justify-center">
-                                        <Link href={`/shop/${item.id}`} className="font-semibold hover:text-primary transition-colors line-clamp-2">
-                                            {item.name}
-                                        </Link>
-                                        <span className="text-sm text-muted-foreground mt-1">Variant: {item.variant}</span>
-                                        <span className="text-sm font-medium mt-2 sm:hidden">{formatGBP(item.price)}</span>
-                                    </div>
-                                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-20 items-start">
 
-                                <div className="col-span-1 sm:col-span-3 flex justify-between sm:justify-center items-center mt-4 sm:mt-0">
-                                    <div className="flex items-center border rounded-md h-10 w-28">
-                                        <button
-                                            className="w-8 h-full flex items-center justify-center text-muted-foreground hover:text-foreground"
-                                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                        >
-                                            <Minus className="w-3 h-3" />
-                                        </button>
-                                        <div className="flex-1 flex items-center justify-center text-sm font-medium">
-                                            {item.quantity}
+                    {/* Items List */}
+                    <div className="lg:col-span-2 space-y-12">
+                        <div className="space-y-8">
+                            {items.map((item) => (
+                                <div key={item.id} className="flex flex-col sm:flex-row gap-10 items-center pb-10 border-b last:border-0 group">
+                                    {/* Product Visual Mock */}
+                                    <div className="w-40 h-52 bg-muted rounded-[32px] overflow-hidden shrink-0 border transition-all duration-700 group-hover:shadow-2xl group-hover:-rotate-3">
+                                        <div className="w-full h-full flex items-center justify-center text-muted-foreground/30 font-serif italic text-xs">Product Image</div>
+                                    </div>
+
+                                    {/* Info & Quantity */}
+                                    <div className="flex-1 flex flex-col justify-between py-2 space-y-6 sm:space-y-0">
+                                        <div className="flex justify-between items-start">
+                                            <div>
+                                                <Link href={`/shop/${item.id}`} className="text-2xl font-serif font-bold text-secondary hover:text-primary transition-colors block mb-1">
+                                                    {item.name}
+                                                </Link>
+                                                <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">{item.weight}</span>
+                                            </div>
+                                            <p className="text-2xl font-bold text-secondary">{formatGBP(item.price)}</p>
                                         </div>
-                                        <button
-                                            className="w-8 h-full flex items-center justify-center text-muted-foreground hover:text-foreground"
-                                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                        >
-                                            <Plus className="w-3 h-3" />
-                                        </button>
+
+                                        <div className="flex items-center justify-between mt-auto">
+                                            <div className="flex items-center border border-muted p-1 rounded-full bg-white shadow-sm">
+                                                <button className="w-8 h-8 flex items-center justify-center hover:bg-primary hover:text-white rounded-full transition-colors"><Minus className="w-3 h-3" /></button>
+                                                <span className="w-10 text-center font-bold text-sm">{item.quantity}</span>
+                                                <button className="w-8 h-8 flex items-center justify-center hover:bg-primary hover:text-white rounded-full transition-colors"><Plus className="w-3 h-3" /></button>
+                                            </div>
+                                            <div className="flex items-center gap-6">
+                                                <button className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
+                                                    <Heart className="w-4 h-4" /> Move to Wishlist
+                                                </button>
+                                                <button className="text-muted-foreground hover:text-destructive transition-colors flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
+                                                    <Trash2 className="w-4 h-4" /> Remove
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                            ))}
+                        </div>
 
-                                <div className="col-span-1 sm:col-span-2 text-right hidden sm:block font-medium">
-                                    {formatGBP(item.price * item.quantity)}
-                                </div>
-
-                                <div className="col-span-1 flex justify-end">
-                                    <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-destructive shrink-0" onClick={() => removeItem(item.id)}>
-                                        <Trash2 className="w-4 h-4" />
-                                    </Button>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Order Summary */}
-                    <div className="w-full lg:w-96 shrink-0">
-                        <div className="bg-muted/30 rounded-2xl p-6 border sticky top-24">
-                            <h2 className="text-xl font-bold mb-6">Order Summary</h2>
-
-                            <div className="space-y-4 text-sm">
-                                <div className="flex justify-between">
-                                    <span className="text-muted-foreground">Subtotal</span>
-                                    <span className="font-medium">{formatGBP(subtotal)}</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-muted-foreground">Total Weight</span>
-                                    <span className="font-medium">{totalWeight.toFixed(1)} kg</span>
-                                </div>
-                                <div className="flex justify-between border-b pb-4">
-                                    <span className="text-muted-foreground">Est. Shipping <br /><span className="text-xs">(based on UK delivery)</span></span>
-                                    <span className="font-medium text-right">{formatGBP(shipping)}</span>
-                                </div>
-
-                                <div className="flex items-center gap-2 pt-2">
-                                    <input
-                                        type="text"
-                                        placeholder="Coupon code"
-                                        className="flex h-9 w-full rounded-md border bg-transparent px-3 text-sm"
-                                        value={couponCode}
-                                        onChange={(e) => setCouponCode(e.target.value)}
-                                    />
-                                    <Button variant="outline" className="h-9">Apply</Button>
-                                </div>
-
-                                <div className="flex justify-between items-center pt-4 border-t text-lg">
-                                    <span className="font-bold">Total</span>
-                                    <span className="font-bold text-primary">{formatGBP(total)}</span>
-                                </div>
-                            </div>
-
-                            <Button className="w-full mt-8 text-base h-12" asChild>
-                                <Link href="/checkout">
-                                    Proceed to Checkout <ArrowRight className="w-4 h-4 ml-2" />
-                                </Link>
-                            </Button>
+                        {/* Note / Promo Section */}
+                        <div className="pt-10 space-y-4">
+                            <h4 className="text-xs font-bold uppercase tracking-widest text-secondary mb-4">Add a note for the artisan</h4>
+                            <textarea
+                                placeholder="Special gift instructions or delivery notes..."
+                                className="w-full h-32 bg-muted/20 border-none rounded-3xl p-6 text-sm focus:ring-1 focus:ring-primary resize-none"
+                            />
                         </div>
                     </div>
+
+                    {/* Summary Sidebar */}
+                    <aside className="bg-secondary rounded-[50px] p-12 text-white shadow-2xl space-y-12">
+                        <h3 className="text-3xl font-serif font-bold">Summary</h3>
+
+                        <div className="space-y-6 text-sm font-medium">
+                            <div className="flex justify-between items-center text-white/50">
+                                <span>Subtotal</span>
+                                <span className="text-white">{formatGBP(subtotal)}</span>
+                            </div>
+                            <div className="flex justify-between items-center text-white/50">
+                                <span>Shipping Estimate</span>
+                                <span className="text-white">{formatGBP(shipping)}</span>
+                            </div>
+                            <div className="flex justify-between items-center text-white/50">
+                                <span>Authenticity Guarantee</span>
+                                <span className="text-white">Included</span>
+                            </div>
+                            <div className="pt-6 border-t border-white/10 flex justify-between items-end">
+                                <span className="text-lg font-serif font-bold uppercase tracking-widest">Total</span>
+                                <span className="text-4xl font-bold text-primary">{formatGBP(subtotal + shipping)}</span>
+                            </div>
+                        </div>
+
+                        <div className="space-y-4 pt-4">
+                            <Button className="w-full h-16 rounded-full text-base font-bold uppercase tracking-widest shadow-xl shadow-primary/20 transition-all hover:scale-[1.02]" asChild>
+                                <Link href="/checkout">Proceed to Checkout</Link>
+                            </Button>
+                            <Link href="/shop" className="block text-center text-xs font-bold uppercase tracking-widest text-white/40 hover:text-primary transition-colors py-4">
+                                Continue Exploring
+                            </Link>
+                        </div>
+
+                        {/* Trust markers */}
+                        <div className="pt-10 border-t border-white/5 flex flex-col gap-6">
+                            <div className="flex items-center gap-4">
+                                <ShieldCheck className="w-6 h-6 text-primary" />
+                                <p className="text-[10px] font-bold uppercase tracking-widest leading-relaxed">Secured with premium <br /> UK encryption standards</p>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <ShoppingBag className="w-6 h-6 text-primary" />
+                                <p className="text-[10px] font-bold uppercase tracking-widest leading-relaxed">Direct support <br /> from Zambian artisans</p>
+                            </div>
+                        </div>
+                    </aside>
+
                 </div>
-            )}
+            </div>
         </div>
     );
 }

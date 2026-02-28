@@ -1,78 +1,117 @@
+"use client";
+
 import Link from "next/link";
-import { Package, Heart, RefreshCw, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ShoppingBag, Package, Heart, MapPin, Settings, ChevronRight, ArrowRight } from "lucide-react";
 
-export default function DashboardOverviewPage() {
+export default function CustomerDashboard() {
+    const recentOrders = [
+        { id: "ZO-9012", date: "Feb 24, 2026", status: "In Transit", total: "£42.50" },
+        { id: "ZO-8955", date: "Jan 12, 2026", status: "Delivered", total: "£14.99" },
+    ];
+
     return (
-        <div className="space-y-8">
-            <div>
-                <h1 className="text-3xl font-bold mb-2">Welcome back, John!</h1>
-                <p className="text-muted-foreground">Here is an overview of your account activity.</p>
-            </div>
+        <div className="container py-20 lg:py-32">
+            <div className="flex flex-col lg:flex-row gap-20">
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="bg-card border rounded-xl p-6 flex flex-col items-center text-center shadow-sm">
-                    <div className="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-4">
-                        <Package className="w-6 h-6" />
+                {/* Navigation Sidebar */}
+                <aside className="w-full lg:w-72 space-y-8">
+                    <div className="space-y-2">
+                        <h1 className="text-4xl font-serif font-bold text-secondary">My Account</h1>
+                        <p className="text-muted-foreground text-sm">Managing orders since 2026</p>
                     </div>
-                    <h3 className="text-2xl font-bold">2</h3>
-                    <p className="text-muted-foreground text-sm font-medium">Active Orders</p>
-                </div>
-                <div className="bg-card border rounded-xl p-6 flex flex-col items-center text-center shadow-sm">
-                    <div className="w-12 h-12 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mb-4">
-                        <Heart className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-2xl font-bold">5</h3>
-                    <p className="text-muted-foreground text-sm font-medium">Saved Items</p>
-                </div>
-                <div className="bg-card border rounded-xl p-6 flex flex-col items-center text-center shadow-sm">
-                    <div className="w-12 h-12 bg-muted text-muted-foreground rounded-full flex items-center justify-center mb-4">
-                        <RefreshCw className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-2xl font-bold">Inactive</h3>
-                    <p className="text-muted-foreground text-sm font-medium">Subscription</p>
-                </div>
-            </div>
 
-            <div className="bg-card border rounded-xl p-6 shadow-sm">
-                <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-xl font-bold">Recent Orders</h2>
-                    <Button variant="ghost" size="sm" asChild className="hidden sm:flex">
-                        <Link href="/dashboard/orders">View All <ArrowRight className="ml-1 w-4 h-4" /></Link>
-                    </Button>
-                </div>
+                    <nav className="flex flex-col gap-2">
+                        {[
+                            { name: "Overview", icon: ShoppingBag, active: true },
+                            { name: "Order History", icon: Package },
+                            { name: "My Wishlist", icon: Heart },
+                            { name: "Addresses", icon: MapPin },
+                            { name: "Account settings", icon: Settings },
+                        ].map((item) => (
+                            <button
+                                key={item.name}
+                                className={`flex items-center justify-between px-6 py-4 rounded-2xl text-sm font-bold tracking-widest uppercase transition-all ${item.active
+                                        ? "bg-primary text-white shadow-xl"
+                                        : "text-muted-foreground hover:bg-muted/50 hover:text-secondary"
+                                    }`}
+                            >
+                                <div className="flex items-center gap-4">
+                                    <item.icon className="w-5 h-5" />
+                                    {item.name}
+                                </div>
+                                {item.active && <ChevronRight className="w-4 h-4" />}
+                            </button>
+                        ))}
+                    </nav>
+                </aside>
 
-                <div className="space-y-4">
-                    <div className="flex items-center justify-between p-4 border rounded-lg bg-muted/20">
-                        <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-primary/20 rounded-md"></div>
-                            <div>
-                                <p className="font-semibold text-sm">Order #ZAM-857392</p>
-                                <p className="text-xs text-muted-foreground">Placed on Feb 18, 2026</p>
+                {/* Dashboard Content */}
+                <div className="flex-1 space-y-16">
+
+                    {/* Welcome Banner */}
+                    <div className="bg-secondary rounded-[40px] p-12 text-white relative overflow-hidden shadow-2xl">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px] -translate-y-20 translate-x-10" />
+                        <div className="relative z-10 space-y-6">
+                            <h2 className="text-3xl md:text-5xl font-serif font-bold">Welcome back, Sarah.</h2>
+                            <p className="text-white/60 text-lg max-w-sm">You have <span className="text-white font-bold">1 order</span> currently on its way to your home.</p>
+                            <Link href="/track" className="inline-flex items-center gap-2 bg-primary text-white font-bold uppercase tracking-[0.2em] text-[10px] px-8 py-4 rounded-full hover:bg-white hover:text-secondary transition-all">
+                                Track Shipment <ArrowRight className="w-4 h-4" />
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Metrics Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {[
+                            { label: "Total Spent", value: "£156.49" },
+                            { label: "Items in Wishlist", value: "12" },
+                            { label: "Coupons Used", value: "2" },
+                        ].map((stat) => (
+                            <div key={stat.label} className="bg-white p-10 rounded-[40px] border shadow-sm space-y-2 group hover:shadow-md transition-shadow">
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">{stat.label}</p>
+                                <p className="text-3xl font-serif font-bold text-secondary group-hover:scale-105 transition-transform origin-left">{stat.value}</p>
                             </div>
+                        ))}
+                    </div>
+
+                    {/* Recent Orders List */}
+                    <div className="space-y-10">
+                        <div className="flex justify-between items-center px-4">
+                            <h3 className="text-2xl font-serif font-bold text-secondary">Recent Activity</h3>
+                            <button className="text-xs font-bold uppercase tracking-widest text-primary border-b-2 border-primary/10 hover:border-primary transition-all pb-1">All Orders</button>
                         </div>
-                        <div className="text-right">
-                            <p className="font-bold text-sm">£30.96</p>
-                            <p className="text-xs text-secondary font-medium mt-1">In Transit</p>
+
+                        <div className="space-y-4">
+                            {recentOrders.map(order => (
+                                <div key={order.id} className="bg-white border rounded-[32px] p-8 flex flex-col md:flex-row justify-between items-center gap-6 hover:shadow-lg transition-all group cursor-pointer">
+                                    <div className="flex items-center gap-8">
+                                        <div className="w-16 h-16 bg-muted rounded-3xl flex items-center justify-center font-serif font-bold text-muted-foreground italic">
+                                            #
+                                        </div>
+                                        <div className="space-y-1">
+                                            <p className="font-serif font-bold text-xl text-secondary">{order.id}</p>
+                                            <p className="text-sm text-muted-foreground">{order.date}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-12 text-center md:text-right">
+                                        <div>
+                                            <p className="text-[10px] uppercase font-bold text-primary mb-1">Status</p>
+                                            <p className="font-bold text-secondary">{order.status}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] uppercase font-bold text-primary mb-1">Total</p>
+                                            <p className="font-bold text-secondary">{order.total}</p>
+                                        </div>
+                                        <button className="w-12 h-12 bg-muted/50 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                            <ChevronRight className="w-5 h-5" />
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
-                </div>
 
-                <Button variant="outline" className="w-full mt-4 sm:hidden" asChild>
-                    <Link href="/dashboard/orders">View All Orders</Link>
-                </Button>
-            </div>
-
-            <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div>
-                    <h2 className="text-xl font-bold text-foreground mb-2">Taste of Home Box</h2>
-                    <p className="text-muted-foreground text-sm max-w-md">
-                        Never run out of your favorite Zambian staples. Subscribe to get them delivered to your door every month.
-                    </p>
                 </div>
-                <Button asChild className="shrink-0 w-full sm:w-auto">
-                    <Link href="/subscription">Join Waitlist</Link>
-                </Button>
             </div>
         </div>
     );
