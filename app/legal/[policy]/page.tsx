@@ -1,5 +1,6 @@
-export default function GenericPolicyPage({ params }: { params: { policy: string } }) {
-    const policyName = params.policy.charAt(0).toUpperCase() + params.policy.slice(1);
+export default async function GenericPolicyPage({ params }: { params: Promise<{ policy: string }> }) {
+    const { policy } = await params;
+    const policyName = policy.charAt(0).toUpperCase() + policy.slice(1);
     return (
         <article className="prose prose-slate max-w-none">
             <h1 className="text-3xl font-bold mb-6">{policyName} Policy</h1>

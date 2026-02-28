@@ -6,7 +6,7 @@ import { ChevronRight, Heart, Minus, Plus, ShoppingBag, Truck } from "lucide-rea
 import { Button } from "@/components/ui/button";
 import { formatGBP } from "@/lib/utils";
 
-export default function ProductDetailPage({ params }: { params: { slug: string } }) {
+export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const [quantity, setQuantity] = useState(1);
     const [selectedVariant, setSelectedVariant] = useState(0);
 

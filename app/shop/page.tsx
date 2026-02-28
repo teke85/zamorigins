@@ -1,3 +1,6 @@
+"use client";
+
+import { use } from "react";
 import Link from "next/link";
 import { Filter, ChevronDown, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,8 +16,9 @@ const mockProducts = [
     { id: '6', name: 'Zambian Wild Honey', price: 9.99, image: 'bg-secondary/20', category: 'Specials' },
 ];
 
-export default function ShopPage({ searchParams }: { searchParams: { category?: string } }) {
-    const selectedCategory = searchParams?.category;
+export default function ShopPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
+    const params = use(searchParams);
+    const selectedCategory = params?.category;
 
     return (
         <div className="container py-10 md:py-16">
