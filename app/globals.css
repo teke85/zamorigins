@@ -1,8 +1,7 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@plugin "tailwindcss-animate";
+@plugin "../node_modules/tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -45,14 +44,17 @@
     from {
       height: 0;
     }
+
     to {
       height: var(--radix-accordion-content-height);
     }
   }
+
   @keyframes accordion-up {
     from {
       height: var(--radix-accordion-content-height);
     }
+
     to {
       height: 0;
     }
@@ -70,15 +72,18 @@
 @utility container {
   margin-inline: auto;
   padding-inline: 2rem;
-  @media (width >= --theme(--breakpoint-sm)) {
+
+  @media (width >=--theme(--breakpoint-sm)) {
     max-width: none;
   }
-  @media (width >= 1400px) {
+
+  @media (width >=1400px) {
     max-width: 1400px;
   }
 }
 
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -86,9 +91,11 @@
   ::file-selector-button {
     border-color: var(--color-border, currentColor);
   }
+
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -96,22 +103,24 @@
 
 @layer base {
   :root {
-    --background: 34 50% 95%; /* Warm Beige */
-    --foreground: 0 0% 20%; /* Dark Gray */
+    --background: 34 50% 95%;
+    /* Warm Beige */
+    --foreground: 0 0% 20%;
+    /* Dark Gray */
     --card: 0 0% 100%;
     --card-foreground: 0 0% 20%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 20%;
 
     /* Primary Brown: #8B6F47 */
-    --primary: 35 32% 41%; 
+    --primary: 35 32% 41%;
     --primary-foreground: 34 50% 95%;
 
     /* Deep Green: #2D5016 */
     --secondary: 96 57% 20%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 100%; 
+    --muted: 0 0% 100%;
     --muted-foreground: 0 0% 40%;
 
     --accent: 34 50% 95%;
@@ -128,17 +137,21 @@
   }
 
   .dark {
-    --background: 0 0% 20%; /* Dark Gray */
-    --foreground: 34 50% 95%; /* Warm Beige */
+    --background: 0 0% 20%;
+    /* Dark Gray */
+    --foreground: 34 50% 95%;
+    /* Warm Beige */
     --card: 0 0% 25%;
     --card-foreground: 34 50% 95%;
     --popover: 0 0% 25%;
     --popover-foreground: 34 50% 95%;
 
-    --primary: 35 32% 41%; /* Primary Brown */
+    --primary: 35 32% 41%;
+    /* Primary Brown */
     --primary-foreground: 34 50% 95%;
 
-    --secondary: 96 57% 20%; /* Deep Green */
+    --secondary: 96 57% 20%;
+    /* Deep Green */
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 25%;
@@ -160,6 +173,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
