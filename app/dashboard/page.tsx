@@ -10,14 +10,14 @@ export default function CustomerDashboard() {
     ];
 
     return (
-        <div className="container py-20 lg:py-32">
+        <div className="container py-16 lg:py-24">
             <div className="flex flex-col lg:flex-row gap-20">
 
                 {/* Navigation Sidebar */}
                 <aside className="w-full lg:w-72 space-y-8">
                     <div className="space-y-2">
                         <h1 className="text-4xl font-serif font-bold text-secondary">My Account</h1>
-                        <p className="text-muted-foreground text-sm">Managing orders since 2026</p>
+                        <p className="text-secondary/40 text-xs font-bold uppercase tracking-widest">Managing orders since 2026</p>
                     </div>
 
                     <nav className="flex flex-col gap-2">
@@ -31,8 +31,8 @@ export default function CustomerDashboard() {
                             <button
                                 key={item.name}
                                 className={`flex items-center justify-between px-6 py-4 rounded-2xl text-sm font-bold tracking-widest uppercase transition-all ${item.active
-                                        ? "bg-primary text-white shadow-xl"
-                                        : "text-muted-foreground hover:bg-muted/50 hover:text-secondary"
+                                    ? "bg-primary text-white shadow-xl"
+                                    : "text-secondary/40 hover:bg-secondary/5 hover:text-secondary"
                                     }`}
                             >
                                 <div className="flex items-center gap-4">
@@ -67,8 +67,8 @@ export default function CustomerDashboard() {
                             { label: "Items in Wishlist", value: "12" },
                             { label: "Coupons Used", value: "2" },
                         ].map((stat) => (
-                            <div key={stat.label} className="bg-white p-10 rounded-[40px] border shadow-sm space-y-2 group hover:shadow-md transition-shadow">
-                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">{stat.label}</p>
+                            <div key={stat.label} className="bg-white p-10 rounded-[40px] border border-secondary/10 shadow-sm space-y-2 group hover:shadow-md transition-shadow">
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D99C3B]">{stat.label}</p>
                                 <p className="text-3xl font-serif font-bold text-secondary group-hover:scale-105 transition-transform origin-left">{stat.value}</p>
                             </div>
                         ))}
@@ -78,19 +78,19 @@ export default function CustomerDashboard() {
                     <div className="space-y-10">
                         <div className="flex justify-between items-center px-4">
                             <h3 className="text-2xl font-serif font-bold text-secondary">Recent Activity</h3>
-                            <button className="text-xs font-bold uppercase tracking-widest text-primary border-b-2 border-primary/10 hover:border-primary transition-all pb-1">All Orders</button>
+                            <button className="text-[10px] font-bold uppercase tracking-widest text-primary border-b-2 border-primary/10 hover:border-primary transition-all pb-1">All Orders</button>
                         </div>
 
                         <div className="space-y-4">
                             {recentOrders.map(order => (
-                                <div key={order.id} className="bg-white border rounded-[32px] p-8 flex flex-col md:flex-row justify-between items-center gap-6 hover:shadow-lg transition-all group cursor-pointer">
+                                <div key={order.id} className="bg-white border border-secondary/10 rounded-[32px] p-8 flex flex-col md:flex-row justify-between items-center gap-6 hover:shadow-lg transition-all group cursor-pointer">
                                     <div className="flex items-center gap-8">
-                                        <div className="w-16 h-16 bg-muted rounded-3xl flex items-center justify-center font-serif font-bold text-muted-foreground italic">
+                                        <div className="w-16 h-16 bg-secondary/5 rounded-3xl flex items-center justify-center font-serif font-bold text-secondary/20 italic">
                                             #
                                         </div>
                                         <div className="space-y-1">
                                             <p className="font-serif font-bold text-xl text-secondary">{order.id}</p>
-                                            <p className="text-sm text-muted-foreground">{order.date}</p>
+                                            <p className="text-xs text-secondary/40 font-bold uppercase tracking-widest">{order.date}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-12 text-center md:text-right">
@@ -99,10 +99,10 @@ export default function CustomerDashboard() {
                                             <p className="font-bold text-secondary">{order.status}</p>
                                         </div>
                                         <div>
-                                            <p className="text-[10px] uppercase font-bold text-primary mb-1">Total</p>
+                                            <p className="text-[10px] uppercase font-bold text-[#D99C3B] mb-1">Total</p>
                                             <p className="font-bold text-secondary">{order.total}</p>
                                         </div>
-                                        <button className="w-12 h-12 bg-muted/50 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                        <button className="w-12 h-12 bg-secondary/5 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
                                             <ChevronRight className="w-5 h-5" />
                                         </button>
                                     </div>

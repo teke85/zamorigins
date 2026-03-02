@@ -13,7 +13,7 @@ export default function CheckoutPage() {
                 <div className="p-10 lg:p-32 flex flex-col justify-center">
                     <div className="max-w-xl mx-auto w-full space-y-16">
                         <div className="space-y-6">
-                            <Link href="/cart" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors">
+                            <Link href="/cart" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-secondary/40 hover:text-primary transition-colors">
                                 <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" /> Return to Bag
                             </Link>
                             <h1 className="text-5xl font-serif font-bold text-secondary">Checkout</h1>
@@ -24,11 +24,11 @@ export default function CheckoutPage() {
                             <div className="space-y-8">
                                 <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary pb-4 border-b">1. Contact Information</h3>
                                 <div className="relative group">
-                                    <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                                    <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-secondary/40 group-focus-within:text-primary transition-colors" />
                                     <input
                                         type="email"
                                         placeholder="Email address for notifications"
-                                        className="w-full h-16 bg-muted/20 border-none rounded-2xl pl-16 pr-6 text-sm focus:ring-1 focus:ring-primary transition-all"
+                                        className="w-full h-16 bg-white border border-secondary/10 rounded-2xl pl-16 pr-6 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-secondary"
                                     />
                                 </div>
                             </div>
@@ -37,11 +37,11 @@ export default function CheckoutPage() {
                             <div className="space-y-8">
                                 <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary pb-4 border-b">2. Shipping Address</h3>
                                 <div className="grid grid-cols-2 gap-4">
-                                    <input placeholder="First name" className="col-span-1 h-16 bg-muted/20 border-none rounded-2xl px-6 text-sm focus:ring-1 focus:ring-primary" />
-                                    <input placeholder="Last name" className="col-span-1 h-16 bg-muted/20 border-none rounded-2xl px-6 text-sm focus:ring-1 focus:ring-primary" />
-                                    <input placeholder="Address line 1" className="col-span-2 h-16 bg-muted/20 border-none rounded-2xl px-6 text-sm focus:ring-1 focus:ring-primary" />
-                                    <input placeholder="City" className="col-span-1 h-16 bg-muted/20 border-none rounded-2xl px-6 text-sm focus:ring-1 focus:ring-primary" />
-                                    <input placeholder="Postcode" className="col-span-1 h-16 bg-muted/20 border-none rounded-2xl px-6 text-sm focus:ring-1 focus:ring-primary" />
+                                    <input placeholder="First name" className="col-span-1 h-16 bg-white border border-secondary/10 rounded-2xl px-6 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary text-secondary" />
+                                    <input placeholder="Last name" className="col-span-1 h-16 bg-white border border-secondary/10 rounded-2xl px-6 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary text-secondary" />
+                                    <input placeholder="Address line 1" className="col-span-2 h-16 bg-white border border-secondary/10 rounded-2xl px-6 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary text-secondary" />
+                                    <input placeholder="City" className="col-span-1 h-16 bg-white border border-secondary/10 rounded-2xl px-6 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary text-secondary" />
+                                    <input placeholder="Postcode" className="col-span-1 h-16 bg-white border border-secondary/10 rounded-2xl px-6 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary text-secondary" />
                                 </div>
                             </div>
 
@@ -53,7 +53,7 @@ export default function CheckoutPage() {
                                         <CreditCard className="w-8 h-8 text-primary" />
                                         <div>
                                             <p className="font-serif font-bold text-secondary tracking-tight">Deferred Payment for V1</p>
-                                            <p className="text-xs text-muted-foreground">Functional processing arrives in V2</p>
+                                            <p className="text-xs text-secondary/40 font-bold uppercase tracking-widest">Functional processing in V2</p>
                                         </div>
                                     </div>
                                     <Lock className="w-5 h-5 text-primary/40" />

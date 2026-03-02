@@ -7,60 +7,52 @@ import { ProductCard } from "@/components/product/ProductCard";
 
 // Updated mock data with tags
 const mockProducts = [
-    { id: '1', name: 'Premium Sorghum (Mabele)', price: 4.99, image: 'bg-primary/20', category: 'Grains & Beans', tag: 'Best Seller' },
-    { id: '2', name: 'Authentic Groundnuts', price: 6.50, image: 'bg-secondary/20', category: 'Snacks', tag: 'Fresh' },
-    { id: '3', name: 'Dried Pumpkin Leaves (Chibwabwa)', price: 3.99, image: 'bg-primary/20', category: 'Dried Vegetables', tag: 'Seasonal' },
-    { id: '4', name: 'Millet Meal', price: 5.50, image: 'bg-secondary/20', category: 'Grains & Beans' },
-    { id: '5', name: 'Kapenta (Dried Seafood)', price: 8.99, image: 'bg-primary/20', category: 'Seafood', tag: 'Staff Pick' },
-    { id: '6', name: 'Zambian Wild Honey', price: 9.99, image: 'bg-secondary/20', category: 'Specials', tag: 'Rare' },
+    { id: 'kapenta', name: 'Premium Lake Kariba Kapenta', price: 12.99, variant: "500g", category: 'Fish', tag: 'Best Seller', image: "https://res.cloudinary.com/dpeg7wc34/image/upload/v1772439413/product-kapenta-L5aJLvM4_ifvfdb.jpg" },
+    { id: 'dried-fish', name: 'Bream Dried Fish', price: 15.50, variant: "750g", category: 'Fish', tag: 'Fresh', image: "https://res.cloudinary.com/dpeg7wc34/image/upload/v1772439374/product-dried-fish-Bh_X2_xb_kx8hk7.jpg" },
+    { id: 'beans', name: 'Mixed Zambian Beans', price: 8.99, variant: "1kg", category: 'Grains & Beans', tag: 'Organic', image: "https://res.cloudinary.com/dpeg7wc34/image/upload/v1772439360/product-beans-D143BQH__xwbt5h.jpg" },
+    { id: 'mealie-meal', name: 'Breakfast Mealie Meal', price: 9.99, variant: "2.5kg", category: 'Staples', tag: 'Essential', image: "https://res.cloudinary.com/dpeg7wc34/image/upload/v1772439345/product-mealie-CygOyINB_m2ivdm.jpg" },
+    { id: 'mushrooms', name: 'Wild Forest Mushrooms', price: 14.99, variant: "250g", category: 'Vegetables', tag: 'Seasonal', image: "https://res.cloudinary.com/dpeg7wc34/image/upload/v1772439329/product-mushrooms-DjAcZHFP_xalhkz.jpg" },
+    { id: 'spices', name: 'Heritage Spice Collection', price: 11.50, variant: "300g", category: 'Spices', tag: 'Rare', image: "https://res.cloudinary.com/dpeg7wc34/image/upload/v1772439303/product-spices-DgLgP1aF_roh8mb.jpg" },
 ];
 
 export default function ShopPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
     const params = use(searchParams);
     const selectedCategory = params?.category;
 
-    const categories = ["All Products", "Grains & Beans", "Spices", "Dried Vegetables", "Snacks", "Seafood"];
+    const categories = ["All Collections", "Fish", "Grains & Beans", "Staples", "Vegetables", "Spices"];
 
     return (
-        <div className="bg-background min-h-screen">
-            {/* Header / Banner */}
-            <section className="bg-secondary pt-32 pb-20 text-white border-b border-white/5">
-                <div className="container text-center space-y-4">
-                    <h1 className="text-5xl md:text-7xl font-serif font-bold tracking-tight">The Pantry</h1>
-                    <p className="text-white/60 max-w-lg mx-auto text-lg">
-                        Sourced with integrity. Shared with love. Explore our collection of authentic Zambian flavors.
+        <div className="bg-[#FCFAF8] min-h-screen text-secondary">
+            {/* Header / Banner - Refined Editorial */}
+            <section className="relative pt-40 pb-24 border-b border-secondary/5 overflow-hidden">
+                <div className="container relative z-10 text-center space-y-6">
+                    <span className="text-[#D99C3B] font-bold uppercase tracking-[0.4em] text-[10px]">The Collection</span>
+                    <h1 className="text-6xl md:text-8xl font-serif font-bold tracking-tight animate-in fade-in slide-in-from-bottom-8 duration-1000">The Pantry</h1>
+                    <p className="text-secondary/50 max-w-xl mx-auto text-lg leading-relaxed font-light">
+                        Traditionally harvested staples from the heart of Zambia, curated for the modern global kitchen.
                     </p>
                 </div>
             </section>
 
             {/* Main Content Area */}
-            <div className="container py-20 lg:py-32">
+            <div className="container py-24">
                 <div className="flex flex-col lg:flex-row gap-20">
 
-                    {/* Subtle Mobile Filter Button */}
-                    <div className="lg:hidden flex justify-between items-center mb-10 pb-4 border-b">
-                        <Button variant="outline" className="rounded-full gap-2">
-                            <Filter className="w-4 h-4" /> Filters
-                        </Button>
-                        <div className="text-sm font-bold tracking-widest uppercase text-muted-foreground">
-                            {mockProducts.length} Results
-                        </div>
-                    </div>
-
-                    {/* Desktop Filter Sidebar */}
+                    {/* Desktop Filter Sidebar - Modernized */}
                     <aside className="hidden lg:block w-72 shrink-0">
-                        <div className="sticky top-32 space-y-12">
-                            <div className="space-y-6">
-                                <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary border-b pb-4">Browse by Category</h3>
+                        <div className="sticky top-40 space-y-16">
+                            <div className="space-y-8">
+                                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D99C3B] border-b border-secondary/5 pb-4">Collections</h3>
                                 <ul className="space-y-4">
                                     {categories.map((cat) => (
                                         <li key={cat}>
                                             <button
-                                                className={`text-sm font-medium transition-all hover:text-primary ${(selectedCategory === cat.toLowerCase() || (!selectedCategory && cat === "All Products"))
-                                                        ? "text-primary translate-x-3"
-                                                        : "text-muted-foreground"
+                                                className={`group flex items-center text-xs font-bold uppercase tracking-widest transition-all duration-300 ${(selectedCategory === cat.toLowerCase() || (!selectedCategory && cat === "All Collections"))
+                                                    ? "text-secondary"
+                                                    : "text-secondary/40 hover:text-secondary hover:translate-x-1"
                                                     }`}
                                             >
+                                                <span className={`w-2 h-2 rounded-full bg-[#D99C3B] mr-3 transition-all duration-300 ${(selectedCategory === cat.toLowerCase() || (!selectedCategory && cat === "All Collections")) ? "opacity-100 scale-100" : "opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-75"}`} />
                                                 {cat}
                                             </button>
                                         </li>
@@ -68,21 +60,21 @@ export default function ShopPage({ searchParams }: { searchParams: Promise<{ cat
                                 </ul>
                             </div>
 
-                            <div className="space-y-6">
-                                <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary border-b pb-4">Price Focus</h3>
+                            <div className="space-y-8">
+                                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D99C3B] border-b border-secondary/5 pb-4">Refine by Price</h3>
                                 <div className="space-y-6">
                                     <div className="flex gap-4">
-                                        <div className="flex-1">
-                                            <label className="text-[10px] uppercase font-bold text-muted-foreground block mb-2">Min Price</label>
-                                            <input type="text" placeholder="£0" className="w-full bg-muted/50 border-none rounded-lg p-3 text-sm focus:ring-1 focus:ring-primary" />
+                                        <div className="flex-1 space-y-2">
+                                            <label className="text-[9px] uppercase font-bold text-secondary/40 tracking-widest">Min</label>
+                                            <input type="text" placeholder="£0" className="w-full bg-white border border-secondary/5 rounded-full px-4 h-10 text-xs focus:ring-1 focus:ring-[#D99C3B] outline-none text-secondary placeholder:text-secondary/20" />
                                         </div>
-                                        <div className="flex-1">
-                                            <label className="text-[10px] uppercase font-bold text-muted-foreground block mb-2">Max Price</label>
-                                            <input type="text" placeholder="£100" className="w-full bg-muted/50 border-none rounded-lg p-3 text-sm focus:ring-1 focus:ring-primary" />
+                                        <div className="flex-1 space-y-2">
+                                            <label className="text-[9px] uppercase font-bold text-secondary/40 tracking-widest">Max</label>
+                                            <input type="text" placeholder="£50" className="w-full bg-white border border-secondary/5 rounded-full px-4 h-10 text-xs focus:ring-1 focus:ring-[#D99C3B] outline-none text-secondary placeholder:text-secondary/20" />
                                         </div>
                                     </div>
-                                    <Button className="w-full rounded-full h-12 uppercase font-bold text-[10px] tracking-widest shadow-lg">
-                                        Update Results
+                                    <Button className="w-full rounded-full h-12 bg-secondary text-white uppercase font-bold text-[9px] tracking-widest hover:bg-secondary/90 shadow-xl transition-all">
+                                        Apply Filters
                                     </Button>
                                 </div>
                             </div>
@@ -91,29 +83,27 @@ export default function ShopPage({ searchParams }: { searchParams: Promise<{ cat
 
                     {/* Product Grid Area */}
                     <div className="flex-1">
-                        {/* Toolbar */}
-                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 gap-6">
-                            <div className="hidden lg:block">
-                                <p className="text-sm text-muted-foreground font-medium">
-                                    Showing <span className="text-secondary font-bold">1–{mockProducts.length}</span> of 24 carefully curated items
+                        {/* Toolbar - Boutique Style */}
+                        <div className="flex flex-col sm:flex-row justify-between items-center mb-16 gap-8 border-b border-secondary/5 pb-8">
+                            <div className="space-y-1">
+                                <p className="text-xs text-secondary/40 font-bold uppercase tracking-widest">
+                                    Found <span className="text-secondary">{mockProducts.length}</span> Objects of Heritage
                                 </p>
                             </div>
 
-                            <div className="flex items-center gap-6 w-full sm:w-auto">
-                                <div className="flex items-center gap-2 border rounded-full p-1 bg-muted/20">
-                                    <button className="p-1.5 rounded-full bg-white shadow-sm text-primary"><Grid2X2 className="w-4 h-4" /></button>
-                                    <button className="p-1.5 rounded-full text-muted-foreground hover:text-secondary"><List className="w-4 h-4" /></button>
+                            <div className="flex items-center gap-6">
+                                <div className="flex items-center gap-2 p-1 bg-white rounded-full border border-secondary/5 shadow-sm">
+                                    <button className="p-2 rounded-full bg-secondary text-white shadow-lg"><Grid2X2 className="w-3.5 h-3.5" /></button>
+                                    <button className="p-2 rounded-full text-secondary/30 hover:text-secondary hover:bg-secondary/5 transition-all"><List className="w-3.5 h-3.5" /></button>
                                 </div>
-                                <div className="relative group flex-1 sm:flex-initial">
-                                    <button className="flex items-center justify-between w-full sm:w-48 gap-2 text-xs font-bold uppercase tracking-widest border-2 border-muted rounded-full px-6 h-12 hover:border-primary transition-colors">
-                                        Sort By <ChevronDown className="w-4 h-4" />
-                                    </button>
-                                </div>
+                                <button className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-widest border border-secondary/5 bg-white rounded-full px-6 h-12 hover:border-[#D99C3B] hover:shadow-md transition-all text-secondary">
+                                    Sort by: Popularity <ChevronDown className="w-3.5 h-3.5 text-[#D99C3B]" />
+                                </button>
                             </div>
                         </div>
 
-                        {/* Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-16 gap-x-10">
+                        {/* Grid - Refined Spacing */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16 animate-in fade-in duration-1000">
                             {mockProducts.map((product) => (
                                 <ProductCard
                                     key={product.id}
@@ -122,21 +112,17 @@ export default function ShopPage({ searchParams }: { searchParams: Promise<{ cat
                                     price={product.price}
                                     category={product.category}
                                     tag={product.tag}
+                                    image={product.image}
+                                    variant={product.variant}
                                 />
                             ))}
                         </div>
 
-                        {/* Pagination */}
+                        {/* Pagination - Minimalist */}
                         <div className="mt-32 flex justify-center items-center gap-4">
-                            <Button variant="ghost" disabled className="text-xs uppercase font-bold tracking-widest h-12 px-8 rounded-full border">Prev</Button>
-                            <div className="flex items-center gap-2">
-                                {[1, 2, 3].map(n => (
-                                    <button key={n} className={`w-10 h-10 rounded-full text-sm font-bold transition-all ${n === 1 ? 'bg-secondary text-white shadow-lg scale-110' : 'text-muted-foreground hover:text-primary'}`}>
-                                        {n}
-                                    </button>
-                                ))}
-                            </div>
-                            <Button variant="ghost" className="text-xs uppercase font-bold tracking-widest h-12 px-8 rounded-full border">Next</Button>
+                            <button className="w-12 h-12 rounded-full text-[10px] font-bold bg-secondary text-white shadow-2xl">01</button>
+                            <button className="w-12 h-12 rounded-full text-[10px] font-bold text-secondary/40 hover:text-secondary hover:bg-white border border-transparent hover:border-secondary/5 transition-all">02</button>
+                            <button className="w-12 h-12 rounded-full text-[10px] font-bold text-secondary/40 hover:text-secondary hover:bg-white border border-transparent hover:border-secondary/5 transition-all">03</button>
                         </div>
                     </div>
 

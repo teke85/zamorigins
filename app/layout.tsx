@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { DM_Serif_Display, DM_Sans } from "next/font/google"; // New Fonts
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
-const serif = Playfair_Display({
+const serif = DM_Serif_Display({
   subsets: ["latin"],
+  weight: "400",
   variable: "--font-serif",
 });
 
-const sans = Inter({
+const sans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
 });

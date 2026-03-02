@@ -14,12 +14,12 @@ export default function TrackOrderPage() {
     ];
 
     return (
-        <div className="bg-background min-h-screen py-20 lg:py-32">
+        <div className="bg-background min-h-screen py-16 lg:py-24">
             <div className="container max-w-5xl">
 
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
                     <div className="space-y-6">
-                        <Link href="/dashboard" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors">
+                        <Link href="/dashboard" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-secondary/40 hover:text-primary transition-colors">
                             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" /> My Dashboard
                         </Link>
                         <h1 className="text-5xl md:text-[80px] font-serif font-bold text-secondary tracking-tight leading-tighter">
@@ -31,7 +31,7 @@ export default function TrackOrderPage() {
                             <Package className="w-8 h-8" />
                         </div>
                         <div>
-                            <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-[0.2em] mb-1">Order Identifier</p>
+                            <p className="text-[10px] uppercase font-bold text-secondary/40 tracking-[0.2em] mb-1">Order Identifier</p>
                             <p className="text-2xl font-serif font-bold text-secondary tracking-tight">#{"ZO-7281-AMZ"}</p>
                         </div>
                     </div>
@@ -43,23 +43,23 @@ export default function TrackOrderPage() {
                     <div className="lg:col-span-2 space-y-12">
                         <div className="relative pl-12 space-y-16">
                             {/* Vertical Line */}
-                            <div className="absolute left-4 top-4 bottom-4 w-0.5 bg-muted z-0" />
+                            <div className="absolute left-4 top-4 bottom-4 w-0.5 bg-secondary/5 z-0" />
 
                             {status.map((item, i) => (
                                 <div key={i} className="relative z-10 group">
                                     <div className={`absolute -left-12 w-8 h-8 rounded-full border-4 border-white shadow-xl flex items-center justify-center transition-all ${item.completed
-                                            ? 'bg-primary'
-                                            : item.active
-                                                ? 'bg-primary border-primary/20 animate-pulse'
-                                                : 'bg-muted'
+                                        ? 'bg-primary'
+                                        : item.active
+                                            ? 'bg-primary border-primary/20 animate-pulse'
+                                            : 'bg-secondary/10'
                                         }`}>
                                         {item.completed && <CheckCircle2 className="w-4 h-4 text-white" />}
                                     </div>
                                     <div className="space-y-1">
-                                        <h4 className={`text-xl font-serif font-bold ${item.completed || item.active ? 'text-secondary' : 'text-muted-foreground'}`}>
+                                        <h4 className={`text-xl font-serif font-bold ${item.completed || item.active ? 'text-secondary' : 'text-secondary/30'}`}>
                                             {item.label}
                                         </h4>
-                                        <p className="text-xs font-medium text-muted-foreground tracking-widest uppercase">
+                                        <p className="text-xs font-bold text-secondary/40 tracking-[0.2em] uppercase">
                                             {item.date}
                                         </p>
                                     </div>
@@ -99,13 +99,13 @@ export default function TrackOrderPage() {
                             </div>
                         </div>
 
-                        <div className="p-10 border rounded-[50px] bg-white text-center space-y-6 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="p-10 border border-secondary/10 rounded-[50px] bg-white text-center space-y-6 shadow-sm hover:shadow-md transition-shadow">
                             <ShoppingBag className="w-8 h-8 text-primary mx-auto" />
                             <div className="space-y-2">
                                 <h4 className="font-serif font-bold text-secondary text-lg uppercase tracking-tight">Need Support?</h4>
-                                <p className="text-xs text-muted-foreground leading-relaxed">Our Zambian-based support team is available 24/7 to help trace your harvest.</p>
+                                <p className="text-xs text-secondary/60 leading-relaxed font-medium">Our Zambian-based support team is available 24/7 to help trace your harvest.</p>
                             </div>
-                            <Button variant="outline" className="w-full rounded-full h-12 border-muted hover:border-primary hover:text-primary uppercase font-bold text-[10px] tracking-widest">
+                            <Button variant="outline" className="w-full rounded-full h-12 border-secondary/20 hover:border-primary hover:text-primary uppercase font-bold text-[10px] tracking-widest">
                                 Contact Artisan
                             </Button>
                         </div>

@@ -9,7 +9,7 @@ export default function SubscriptionPage() {
         <div className="bg-background min-h-screen flex flex-col items-center">
 
             {/* Editorial Content Hero */}
-            <section className="container py-32 lg:py-52">
+            <section className="container py-24 lg:py-32">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 xl:gap-40 items-center">
                     <div className="space-y-12">
                         <div className="space-y-6">
@@ -20,7 +20,7 @@ export default function SubscriptionPage() {
                                 The Taste of <br /> <span className="text-primary italic">Home</span> Box.
                             </h1>
                         </div>
-                        <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
+                        <p className="text-xl text-secondary/60 leading-relaxed max-w-lg font-medium">
                             The ultimate curated collection for the Zambian diaspora and organic food enthusiasts in the UK. Hand-selected staples, seasonal treats, and authentic flavors delivered to your door every month.
                         </p>
 
@@ -30,8 +30,8 @@ export default function SubscriptionPage() {
                                     <Star className="w-6 h-6 text-primary fill-current" />
                                 </div>
                                 <div>
-                                    <h4 className="text-lg font-serif font-bold text-secondary">Artisanal Selection</h4>
-                                    <p className="text-sm text-muted-foreground">Rare specialties not found anywhere else in the UK.</p>
+                                    <h4 className="text-lg font-serif font-bold text-secondary">Artisinal Selection</h4>
+                                    <p className="text-sm text-secondary/60 font-medium">Rare specialties not found anywhere else in the UK.</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-6">
@@ -40,7 +40,7 @@ export default function SubscriptionPage() {
                                 </div>
                                 <div>
                                     <h4 className="text-lg font-serif font-bold text-secondary">Direct Impact</h4>
-                                    <p className="text-sm text-muted-foreground">Every box directly supports 5+ Zambian farming families.</p>
+                                    <p className="text-sm text-secondary/60 font-medium">Every box directly supports 5+ Zambian farming families.</p>
                                 </div>
                             </div>
                         </div>
@@ -52,16 +52,16 @@ export default function SubscriptionPage() {
                         <div className="relative bg-white p-12 lg:p-20 rounded-[100px] border shadow-2xl space-y-12 text-center lg:text-left">
                             <div className="space-y-2">
                                 <h3 className="text-3xl font-serif font-bold text-secondary">Join the Waitlist</h3>
-                                <p className="text-muted-foreground italic font-serif">Arriving Spring 2026. Limited to 500 initial slots.</p>
+                                <p className="text-secondary/60 italic font-serif">Arriving Spring 2026. Limited to 500 initial slots.</p>
                             </div>
 
                             <form className="space-y-6">
                                 <div className="relative group">
-                                    <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                                    <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-secondary/30 group-focus-within:text-primary transition-colors" />
                                     <input
                                         type="email"
                                         placeholder="Enter your email"
-                                        className="w-full h-18 bg-muted border-none rounded-full pl-16 pr-6 text-sm focus:ring-2 focus:ring-primary shadow-inner"
+                                        className="w-full h-18 bg-white border border-secondary/10 rounded-full pl-16 pr-6 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary shadow-inner text-secondary"
                                     />
                                 </div>
                                 <Button className="w-full h-18 rounded-full text-base font-bold uppercase tracking-widest shadow-2xl shadow-primary/20 transition-all hover:scale-[1.02]">
@@ -69,13 +69,13 @@ export default function SubscriptionPage() {
                                 </Button>
                             </form>
 
-                            <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-10 border-t border-muted">
+                            <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-10 border-t border-secondary/5">
                                 <div className="flex -space-x-3">
                                     {[1, 2, 3, 4].map(idx => (
-                                        <div key={idx} className="w-10 h-10 rounded-full border-2 border-white bg-muted shadow-sm flex items-center justify-center font-bold text-[8px] uppercase tracking-tighter">Sarah</div>
+                                        <div key={idx} className="w-10 h-10 rounded-full border-2 border-white bg-secondary/5 shadow-sm flex items-center justify-center font-bold text-[8px] uppercase tracking-tighter text-secondary/40">Sarah</div>
                                     ))}
                                 </div>
-                                <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mt-2">
+                                <p className="text-[10px] font-bold uppercase tracking-widest text-[#D99C3B] mt-2">
                                     Joined by <span className="text-primary">1,248</span> others
                                 </p>
                             </div>
@@ -85,7 +85,7 @@ export default function SubscriptionPage() {
             </section>
 
             {/* Philosophy Sub-section */}
-            <section className="bg-secondary w-full py-32 rounded-t-[100px] text-white">
+            <section className="bg-secondary w-full py-24 rounded-t-[100px] text-white">
                 <div className="container overflow-hidden">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
                         {[

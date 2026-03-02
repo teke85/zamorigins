@@ -2,9 +2,9 @@ export default async function GenericPolicyPage({ params }: { params: Promise<{ 
     const { policy } = await params;
     const policyName = policy.charAt(0).toUpperCase() + policy.slice(1);
     return (
-        <article className="prose prose-slate max-w-none">
-            <h1 className="text-3xl font-bold mb-6">{policyName} Policy</h1>
-            <p className="text-sm text-muted-foreground mb-8">This is a placeholder policy document for {policyName}.</p>
+        <article className="prose prose-stone max-w-none prose-headings:text-secondary prose-p:text-secondary/80">
+            <h1 className="text-3xl font-serif font-bold mb-6 text-secondary">{policyName} Policy</h1>
+            <p className="text-sm text-secondary/50 mb-8 font-serif italic">This is a placeholder policy document for {policyName}.</p>
 
             <h2>1. Overview</h2>
             <p>Content for {policyName} goes here. In Version 2, the exact legal wording will be provided here.</p>

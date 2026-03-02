@@ -1,8 +1,8 @@
 export default function TermsPage() {
     return (
-        <article className="prose prose-slate max-w-none">
-            <h1 className="text-3xl font-bold mb-6">Terms and Conditions</h1>
-            <p className="text-sm text-muted-foreground mb-8">Last Updated: February 2026</p>
+        <article className="prose prose-stone max-w-none prose-headings:text-secondary prose-p:text-secondary/80 prose-li:text-secondary/80">
+            <h1 className="text-3xl font-serif font-bold mb-6 text-secondary">Terms and Conditions</h1>
+            <p className="text-sm text-secondary/50 mb-8">Last Updated: February 2026</p>
 
             <h2>1. Introduction</h2>
             <p>Welcome to ZamOrigins. By accessing our website and purchasing our authentic Zambian products, you agree to be bound by these Terms and Conditions.</p>

@@ -30,7 +30,7 @@ export default function AdminDashboard() {
     ];
 
     return (
-        <div className="flex h-[90vh] bg-[#FDFCFB] overflow-hidden rounded-3xl m-4 border shadow-2xl">
+        <div className="flex h-[90vh] bg-background overflow-hidden rounded-3xl m-4 border border-secondary/10 shadow-2xl">
             {/* Sidebar - High Contrast Chocolate */}
             <aside className="w-72 bg-secondary text-white flex flex-col p-8 space-y-12">
                 <div className="flex items-center gap-2">
@@ -50,8 +50,8 @@ export default function AdminDashboard() {
                         <button
                             key={item.name}
                             className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl text-sm font-bold tracking-widest uppercase transition-all ${item.active
-                                    ? "bg-primary text-white shadow-lg"
-                                    : "text-white/50 hover:text-white hover:bg-white/5"
+                                ? "bg-primary text-white shadow-lg"
+                                : "text-white/50 hover:text-white hover:bg-white/5"
                                 }`}
                         >
                             <item.icon className="w-5 h-5" />
@@ -76,11 +76,11 @@ export default function AdminDashboard() {
                 {/* Sub-header / Top Bar */}
                 <header className="h-20 border-b flex items-center justify-between px-10 shrink-0 bg-white/50 backdrop-blur">
                     <div className="relative w-96">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary/30" />
                         <input
                             type="text"
                             placeholder="Search data, orders, customers..."
-                            className="w-full bg-muted/30 border-none rounded-full pl-12 pr-6 h-11 text-sm focus:ring-1 focus:ring-primary"
+                            className="w-full bg-secondary/5 border-none rounded-full pl-12 pr-6 h-11 text-sm focus:ring-4 focus:ring-primary/10 transition-all text-secondary"
                         />
                     </div>
                     <div className="flex items-center gap-6">
@@ -99,8 +99,8 @@ export default function AdminDashboard() {
                     {/* Stats Row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
                         {stats.map((s) => (
-                            <div key={s.name} className="bg-white p-8 rounded-[40px] border shadow-sm space-y-4 hover:shadow-md transition-shadow">
-                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{s.name}</p>
+                            <div key={s.name} className="bg-white p-8 rounded-[40px] border border-secondary/10 shadow-sm space-y-4 hover:shadow-md transition-shadow">
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D99C3B]">{s.name}</p>
                                 <div className="flex items-baseline justify-between">
                                     <h3 className="text-3xl font-serif font-bold text-secondary">{s.value}</h3>
                                     <span className={`text-xs font-bold px-2 py-1 rounded-full ${s.trend === 'up' ? 'text-emerald-600 bg-emerald-50' : 'text-primary bg-primary/5'}`}>
@@ -124,17 +124,17 @@ export default function AdminDashboard() {
 
                             <div className="space-y-6">
                                 {recentOrders.map((order) => (
-                                    <div key={order.id} className="flex items-center justify-between p-6 rounded-3xl hover:bg-muted/30 transition-colors border border-transparent hover:border-muted cursor-pointer">
+                                    <div key={order.id} className="flex items-center justify-between p-6 rounded-3xl hover:bg-secondary/5 transition-colors border border-transparent hover:border-secondary/10 cursor-pointer">
                                         <div className="flex items-center gap-6">
-                                            <div className="w-12 h-12 rounded-2xl bg-muted/50 flex items-center justify-center font-bold text-secondary/40">#</div>
+                                            <div className="w-12 h-12 rounded-2xl bg-secondary/5 flex items-center justify-center font-bold text-secondary/20">#</div>
                                             <div>
                                                 <p className="font-serif font-bold text-secondary">{order.customer}</p>
-                                                <p className="text-xs text-muted-foreground">{order.product} • {order.id}</p>
+                                                <p className="text-xs text-secondary/40 font-bold uppercase tracking-widest">{order.product} • {order.id}</p>
                                             </div>
                                         </div>
                                         <div className="text-right space-y-1">
                                             <p className="font-bold text-primary">{order.total}</p>
-                                            <span className="text-[10px] font-bold uppercase tracking-tighter px-3 py-1 bg-muted rounded-full">
+                                            <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-secondary/5 text-secondary/60 rounded-full">
                                                 {order.status}
                                             </span>
                                         </div>

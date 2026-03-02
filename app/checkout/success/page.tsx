@@ -8,7 +8,7 @@ export default function SuccessPage() {
     const orderNumber = "ZO-7281-AMZ";
 
     return (
-        <div className="min-h-screen bg-[#FDFCFB] flex flex-col items-center justify-center p-6 lg:p-20 py-32 overflow-hidden relative">
+        <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 lg:p-20 py-32 overflow-hidden relative">
             <div className="absolute inset-0 bg-primary/5 rounded-full blur-[200px] -translate-y-1/2 scale-150 pointer-events-none" />
 
             <div className="max-w-3xl w-full flex flex-col items-center text-center space-y-12 relative z-10">
@@ -22,7 +22,7 @@ export default function SuccessPage() {
 
                 <div className="space-y-6">
                     <h1 className="text-5xl md:text-7xl font-serif font-bold text-secondary leading-tight">Harvest Secured.</h1>
-                    <p className="text-muted-foreground text-lg max-w-lg mx-auto leading-relaxed">
+                    <p className="text-secondary/60 text-lg max-w-lg mx-auto leading-relaxed">
                         Thank you for choosing ZamOrigins. Your order <span className="text-secondary font-bold">#{orderNumber}</span> has been successfully received by our artisans.
                     </p>
                 </div>
@@ -32,14 +32,14 @@ export default function SuccessPage() {
                     <div className="p-10 bg-white border-2 border-primary/10 rounded-[40px] shadow-sm space-y-4 hover:shadow-md transition-shadow">
                         <ShoppingBag className="w-6 h-6 text-primary mx-auto md:mx-0" />
                         <div className="text-center md:text-left space-y-1">
-                            <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Standard Delivery</p>
+                            <p className="text-[10px] font-bold uppercase tracking-widest text-[#D99C3B]">Standard Delivery</p>
                             <p className="text-lg font-serif font-bold text-secondary">Est. Arriving March 5th</p>
                         </div>
                     </div>
                     <div className="p-10 bg-white border-2 border-primary/10 rounded-[40px] shadow-sm space-y-4 hover:shadow-md transition-shadow">
                         <MapPin className="w-6 h-6 text-primary mx-auto md:mx-0" />
                         <div className="text-center md:text-left space-y-1">
-                            <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Ship To</p>
+                            <p className="text-[10px] font-bold uppercase tracking-widest text-[#D99C3B]">Ship To</p>
                             <p className="text-lg font-serif font-bold text-secondary">Sarah Jenkins, London</p>
                         </div>
                     </div>
@@ -48,7 +48,7 @@ export default function SuccessPage() {
                 {/* Timeline Visualization */}
                 <div className="w-full space-y-10 pt-10">
                     <div className="flex justify-between items-center relative">
-                        <div className="absolute top-1/2 left-0 right-0 h-1 bg-muted -translate-y-1/2 z-0" />
+                        <div className="absolute top-1/2 left-0 right-0 h-1 bg-secondary/5 -translate-y-1/2 z-0" />
                         <div className="absolute top-1/2 left-0 w-1/4 h-1 bg-primary -translate-y-1/2 z-0" />
                         {[
                             { label: "Ordered", done: true },
@@ -57,8 +57,8 @@ export default function SuccessPage() {
                             { label: "Delivered" },
                         ].map((step, i) => (
                             <div key={i} className="relative z-10 flex flex-col items-center gap-3">
-                                <div className={`w-4 h-4 rounded-full border-4 border-white shadow-md ${step.done ? 'bg-primary' : step.active ? 'bg-primary animate-ping' : 'bg-muted'}`} />
-                                <p className={`text-[10px] font-bold uppercase tracking-widest ${step.done || step.active ? 'text-secondary' : 'text-muted-foreground'}`}>{step.label}</p>
+                                <div className={`w-4 h-4 rounded-full border-4 border-white shadow-md ${step.done ? 'bg-primary' : step.active ? 'bg-primary animate-ping' : 'bg-secondary/10'}`} />
+                                <p className={`text-[10px] font-bold uppercase tracking-widest ${step.done || step.active ? 'text-secondary' : 'text-secondary/30'}`}>{step.label}</p>
                             </div>
                         ))}
                     </div>

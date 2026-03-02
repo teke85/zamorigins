@@ -1,84 +1,113 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, ShieldCheck, Lock, User, CheckCircle } from "lucide-react";
+import Image from "next/image";
+import { Mail, ShieldCheck, Lock, User, CheckCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function RegisterPage() {
     return (
-        <div className="min-h-[90vh] bg-[#FDFCFB] grid grid-cols-1 lg:grid-cols-2">
-            {/* Illustration / Branding Side */}
-            <div className="hidden lg:flex bg-secondary p-20 xl:p-32 flex-col justify-between text-white relative h-full">
-                <div className="absolute inset-0 bg-primary/5 mix-blend-overlay" />
-                <div className="relative z-10 space-y-6">
-                    <Link href="/" className="text-3xl font-serif font-bold text-white tracking-tight">
-                        Zam<span className="text-primary italic">Origins</span>
-                    </Link>
-                    <h2 className="text-5xl xl:text-7xl font-serif font-bold leading-tight">Join the <br /> <span className="text-primary italic">Harvest</span> <br /> community.</h2>
-                </div>
+        <div className="min-h-screen bg-[#FCFAF8] grid grid-cols-1 lg:grid-cols-2">
+            {/* Cinematic Branding Side */}
+            <div className="hidden lg:flex relative h-full overflow-hidden">
+                <Image
+                    src="https://res.cloudinary.com/dpeg7wc34/image/upload/v1772439489/hero%20image.png"
+                    alt="ZamOrigins Heritage"
+                    fill
+                    className="object-cover brightness-75 scale-105"
+                    priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-secondary/60 to-transparent z-10" />
 
-                <div className="relative z-10 space-y-8">
-                    <div className="flex gap-4">
-                        {[1, 2, 3].map(i => <div key={i} className="w-1.5 h-1.5 rounded-full bg-primary" />)}
+                <div className="relative z-20 p-20 xl:p-32 flex flex-col justify-between h-full text-white">
+                    <div className="space-y-12">
+                        <Link href="/" className="text-3xl font-serif font-bold tracking-tight">
+                            Zam<span className="italic text-[#D99C3B]">Origins</span>
+                        </Link>
+                        <h2 className="text-6xl xl:text-8xl font-serif font-bold leading-[1.1]">
+                            Join the <br />
+                            <span className="italic text-[#D99C3B]">Harvest</span> <br />
+                            Community.
+                        </h2>
                     </div>
-                    <p className="text-white/40 text-xs font-bold uppercase tracking-[0.3em] leading-relaxed max-w-xs">
-                        Secured by ZamOrigins Heritage Encryption Standards. Part of the boutique farming network.
-                    </p>
+
+                    <div className="space-y-8">
+                        <div className="flex gap-3">
+                            {[1, 2, 3].map(i => <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#D99C3B]/60" />)}
+                        </div>
+                        <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.4em] leading-relaxed max-w-xs">
+                            Secured by ZamOrigins Heritage Encryption. Part of the boutique farming network.
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            {/* Form Side */}
-            <div className="flex items-center justify-center p-8 lg:p-20 py-24">
-                <div className="max-w-md w-full space-y-12">
-                    <div className="space-y-4">
-                        <h1 className="text-4xl font-serif font-bold text-secondary">Create Account.</h1>
-                        <p className="text-muted-foreground text-lg">Start your artisanal journey today.</p>
+            {/* Form Side - Refined & Minimal */}
+            <div className="flex items-center justify-center p-8 lg:p-24 py-24 bg-[#FCFAF8]">
+                <div className="max-w-md w-full space-y-16 animate-in fade-in slide-in-from-right-8 duration-1000">
+                    <div className="space-y-6 text-center lg:text-left">
+                        <span className="text-[#D99C3B] font-bold uppercase tracking-[0.4em] text-[10px]">Enrollment</span>
+                        <h1 className="text-5xl font-serif font-bold text-secondary">Create Account</h1>
+                        <p className="text-secondary/40 text-lg font-light leading-relaxed">Begin your shared heritage journey.</p>
                     </div>
 
-                    <form className="space-y-6">
-                        <div className="space-y-4">
-                            <div className="relative group">
-                                <User className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-all" />
-                                <input
-                                    type="text"
-                                    placeholder="Full Name"
-                                    className="w-full h-16 bg-muted/20 border-none rounded-2xl pl-16 pr-6 text-sm focus:ring-1 focus:ring-primary transition-all"
-                                />
+                    <form className="space-y-10">
+                        <div className="space-y-6">
+                            <div className="space-y-3">
+                                <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D99C3B] px-1">Full Name</label>
+                                <div className="relative group">
+                                    <User className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary/20 group-focus-within:text-[#D99C3B] transition-all" />
+                                    <input
+                                        type="text"
+                                        placeholder="Full Name"
+                                        className="w-full h-16 bg-white border border-secondary/5 rounded-full pl-16 pr-8 text-sm focus:ring-1 focus:ring-[#D99C3B] outline-none text-secondary placeholder:text-secondary/20 transition-all"
+                                    />
+                                </div>
                             </div>
-                            <div className="relative group">
-                                <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-all" />
-                                <input
-                                    type="email"
-                                    placeholder="Email Address"
-                                    className="w-full h-16 bg-muted/20 border-none rounded-2xl pl-16 pr-6 text-sm focus:ring-1 focus:ring-primary transition-all"
-                                />
+                            <div className="space-y-3">
+                                <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D99C3B] px-1">Email Address</label>
+                                <div className="relative group">
+                                    <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary/20 group-focus-within:text-[#D99C3B] transition-all" />
+                                    <input
+                                        type="email"
+                                        placeholder="email@address.com"
+                                        className="w-full h-16 bg-white border border-secondary/5 rounded-full pl-16 pr-8 text-sm focus:ring-1 focus:ring-[#D99C3B] outline-none text-secondary placeholder:text-secondary/20 transition-all"
+                                    />
+                                </div>
                             </div>
-                            <div className="relative group">
-                                <Lock className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-all" />
-                                <input
-                                    type="password"
-                                    placeholder="Create Password"
-                                    className="w-full h-16 bg-muted/20 border-none rounded-2xl pl-16 pr-6 text-sm focus:ring-1 focus:ring-primary transition-all"
-                                />
+                            <div className="space-y-3">
+                                <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D99C3B] px-1">Password</label>
+                                <div className="relative group">
+                                    <Lock className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary/20 group-focus-within:text-[#D99C3B] transition-all" />
+                                    <input
+                                        type="password"
+                                        placeholder="Create Password"
+                                        className="w-full h-16 bg-white border border-secondary/5 rounded-full pl-16 pr-8 text-sm focus:ring-1 focus:ring-[#D99C3B] outline-none text-secondary placeholder:text-secondary/20 transition-all"
+                                    />
+                                </div>
                             </div>
                         </div>
 
-                        <Button className="w-full h-16 rounded-full text-base font-bold uppercase tracking-widest shadow-2xl shadow-primary/20 transition-all hover:scale-[1.02]">
-                            Join the Boutique
+                        <Button className="w-full h-16 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] shadow-2xl bg-secondary hover:bg-secondary/90 text-white border-none group transition-all">
+                            Join the Boutique <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </Button>
                     </form>
 
-                    <div className="text-center space-y-8 pt-8 border-t border-muted">
-                        <p className="text-sm text-muted-foreground">Already have an account? <Link href="/authentication/login" className="text-primary font-bold hover:underline">Log in</Link></p>
+                    <div className="text-center space-y-12 pt-12 border-t border-secondary/5">
+                        <p className="text-xs text-secondary/40 font-medium">Already have an account? <Link href="/authentication/login" className="text-[#D99C3B] font-bold hover:underline underline-offset-8">Log in</Link></p>
 
-                        <div className="flex justify-center gap-8">
-                            <div className="flex flex-col items-center gap-2 group cursor-wait">
-                                <ShieldCheck className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
-                                <span className="text-[8px] font-bold uppercase tracking-widest text-muted-foreground">Verified</span>
+                        <div className="flex justify-center gap-12">
+                            <div className="flex flex-col items-center gap-4 group">
+                                <div className="w-12 h-12 border border-[#D99C3B]/10 rounded-full flex items-center justify-center group-hover:bg-[#D99C3B]/5 transition-all">
+                                    <ShieldCheck className="w-5 h-5 text-[#D99C3B]" />
+                                </div>
+                                <span className="text-[8px] font-bold uppercase tracking-[0.3em] text-secondary/30">Verified</span>
                             </div>
-                            <div className="flex flex-col items-center gap-2 group cursor-wait">
-                                <CheckCircle className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
-                                <span className="text-[8px] font-bold uppercase tracking-widest text-muted-foreground">Authentic</span>
+                            <div className="flex flex-col items-center gap-4 group">
+                                <div className="w-12 h-12 border border-[#D99C3B]/10 rounded-full flex items-center justify-center group-hover:bg-[#D99C3B]/5 transition-all">
+                                    <CheckCircle className="w-5 h-5 text-[#D99C3B]" />
+                                </div>
+                                <span className="text-[8px] font-bold uppercase tracking-[0.3em] text-secondary/30">Authentic Heritage</span>
                             </div>
                         </div>
                     </div>

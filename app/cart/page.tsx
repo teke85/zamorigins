@@ -15,13 +15,13 @@ export default function CartPage() {
     const shipping = 5.99;
 
     return (
-        <div className="bg-background min-h-screen py-20 lg:py-32">
+        <div className="bg-background min-h-screen py-16 lg:py-24">
             <div className="container">
 
                 {/* Page Header */}
                 <div className="space-y-4 mb-20 text-center lg:text-left">
                     <h1 className="text-5xl md:text-7xl font-serif font-bold text-secondary tracking-tight">Your Bag</h1>
-                    <p className="text-muted-foreground text-lg uppercase tracking-widest font-bold text-[10px]">
+                    <p className="text-secondary/50 text-lg uppercase tracking-widest font-bold text-[10px]">
                         {items.length} Curated Items Ready for Shipment
                     </p>
                 </div>
@@ -34,8 +34,8 @@ export default function CartPage() {
                             {items.map((item) => (
                                 <div key={item.id} className="flex flex-col sm:flex-row gap-10 items-center pb-10 border-b last:border-0 group">
                                     {/* Product Visual Mock */}
-                                    <div className="w-40 h-52 bg-muted rounded-[32px] overflow-hidden shrink-0 border transition-all duration-700 group-hover:shadow-2xl group-hover:-rotate-3">
-                                        <div className="w-full h-full flex items-center justify-center text-muted-foreground/30 font-serif italic text-xs">Product Image</div>
+                                    <div className="w-40 h-52 bg-white rounded-[32px] overflow-hidden shrink-0 border border-secondary/10 transition-all duration-700 group-hover:shadow-2xl group-hover:-rotate-3 flex items-center justify-center">
+                                        <div className="text-secondary/20 font-serif italic text-xs">Product Image</div>
                                     </div>
 
                                     {/* Info & Quantity */}
@@ -45,7 +45,7 @@ export default function CartPage() {
                                                 <Link href={`/shop/${item.id}`} className="text-2xl font-serif font-bold text-secondary hover:text-primary transition-colors block mb-1">
                                                     {item.name}
                                                 </Link>
-                                                <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">{item.weight}</span>
+                                                <span className="text-xs font-bold uppercase tracking-widest text-secondary/60 bg-secondary/5 px-3 py-1 rounded-full">{item.weight}</span>
                                             </div>
                                             <p className="text-2xl font-bold text-secondary">{formatGBP(item.price)}</p>
                                         </div>
@@ -57,10 +57,10 @@ export default function CartPage() {
                                                 <button className="w-8 h-8 flex items-center justify-center hover:bg-primary hover:text-white rounded-full transition-colors"><Plus className="w-3 h-3" /></button>
                                             </div>
                                             <div className="flex items-center gap-6">
-                                                <button className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
+                                                <button className="text-secondary/60 hover:text-primary transition-colors flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
                                                     <Heart className="w-4 h-4" /> Move to Wishlist
                                                 </button>
-                                                <button className="text-muted-foreground hover:text-destructive transition-colors flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
+                                                <button className="text-secondary/60 hover:text-destructive transition-colors flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
                                                     <Trash2 className="w-4 h-4" /> Remove
                                                 </button>
                                             </div>
@@ -75,7 +75,7 @@ export default function CartPage() {
                             <h4 className="text-xs font-bold uppercase tracking-widest text-secondary mb-4">Add a note for the artisan</h4>
                             <textarea
                                 placeholder="Special gift instructions or delivery notes..."
-                                className="w-full h-32 bg-muted/20 border-none rounded-3xl p-6 text-sm focus:ring-1 focus:ring-primary resize-none"
+                                className="w-full h-32 bg-white border border-secondary/10 rounded-3xl p-6 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary resize-none text-secondary"
                             />
                         </div>
                     </div>
