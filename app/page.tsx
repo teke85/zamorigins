@@ -22,7 +22,6 @@ export default function Home() {
     { name: "Wild Mushrooms", products: "5 Products", image: "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?auto=format&fit=crop&q=80&w=600" },
   ];
 
-<<<<<<< HEAD
   const drinks = [
     { name: "Fanta Bottle", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270623/Fanta_Bottle.jpg" },
     { name: "Fanta Disposable", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270622/Fanta_Disposable.jpg" },
@@ -32,8 +31,6 @@ export default function Home() {
     { name: "Special Blend", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270621/WhatsApp_Image_2026-09-24_at_18.59.06_12.jpg" },
   ];
 
-=======
->>>>>>> 3073db419efd1948da2367bbd5ff94b9d24fa871
   const signature = [
     {
       id: "kapenta",
@@ -99,6 +96,7 @@ export default function Home() {
             fill
             className="object-cover brightness-75 scale-105"
             priority
+            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 via-transparent to-transparent z-10" />
         </div>
@@ -155,6 +153,7 @@ export default function Home() {
                   alt={cat.name}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/20 to-transparent flex flex-col justify-end p-6">
                   <div className="space-y-1">
@@ -169,7 +168,6 @@ export default function Home() {
         </div>
       </section>
 
-<<<<<<< HEAD
       {/* SECTION 1b: Drinks Category */}
       <section className="py-20 bg-white border-t border-secondary/5">
         <div className="container">
@@ -196,6 +194,7 @@ export default function Home() {
                   alt={drink.name}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/20 to-transparent flex flex-col justify-end p-6">
                   <div className="space-y-1">
@@ -215,8 +214,6 @@ export default function Home() {
         </div>
       </section>
 
-=======
->>>>>>> 3073db419efd1948da2367bbd5ff94b9d24fa871
       {/* SECTION 2: Signature Selection (Featured Elevated) */}
       <section className="py-20 bg-white border-y border-secondary/5">
         <div className="container text-center mb-20 space-y-4">
@@ -248,6 +245,7 @@ export default function Home() {
                     alt={p.name}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    unoptimized
                   />
                   <div className="absolute inset-x-0 bottom-6 px-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                     <Button className="w-full bg-white text-secondary font-bold uppercase tracking-widest text-[9px] h-12 rounded-full border border-secondary/10 hover:bg-secondary hover:text-white transition-all shadow-xl">
@@ -291,7 +289,7 @@ export default function Home() {
                 <ShoppingBag className="w-8 h-8 text-[#563C29] font-light" />
               </div>
               <div className="space-y-4">
-                <h4 className="text-2xl font-serif text-secondary">Browse & Order</h4>
+                <h4 className="text-2xl font-serif text-secondary">Browse &amp; Order</h4>
                 <p className="text-secondary/50 text-base leading-relaxed max-w-[300px] mx-auto font-light">
                   Choose from our curated selection of authentic Zambian dry foods.
                 </p>
@@ -317,7 +315,7 @@ export default function Home() {
               <div className="space-y-4">
                 <h4 className="text-2xl font-serif text-secondary">Delivered to You</h4>
                 <p className="text-secondary/50 text-base leading-relaxed max-w-[300px] mx-auto font-light">
-                  We ship internationally to your doorstep — UK, USA, Canada & Europe.
+                  We ship internationally to your doorstep — UK, USA, Canada &amp; Europe.
                 </p>
               </div>
             </div>
@@ -339,7 +337,7 @@ export default function Home() {
                   {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
                 </div>
                 <p className="text-xl md:text-2xl font-serif italic text-secondary/80 leading-relaxed relative z-10">
-                  "{t.text}"
+                  &quot;{t.text}&quot;
                 </p>
                 <div className="pt-4 border-t border-secondary/10">
                   <p className="font-bold text-secondary">{t.author}</p>
