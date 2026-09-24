@@ -1,12 +1,8 @@
 "use client";
 
 import Link from "next/link";
-<<<<<<< HEAD
 import Image from "next/image";
-=======
->>>>>>> 3073db419efd1948da2367bbd5ff94b9d24fa871
-import { Search, ShoppingBag, User, Heart, Menu, X, ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Search, ShoppingBag, User, Heart, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 export function Navbar() {
@@ -17,40 +13,31 @@ export function Navbar() {
         { label: "Best Sellers", href: "/shop?sort=best-sellers" },
         { label: "New products", href: "/shop?sort=new" },
         { label: "Food and drink", href: "/shop/food-and-drink" },
-        { label: "dry foods", href: "/shop/dry-foods" },
-        { label: "beauty and wellness", href: "/shop/beauty-and-wellness" },
+        { label: "Dry foods", href: "/shop/dry-foods" },
+        { label: "Beauty and wellness", href: "/shop/beauty-and-wellness" },
     ];
 
     return (
         <header className="sticky top-0 z-50 w-full bg-white border-b">
             {/* Announcement Bar */}
             <div className="bg-[#563C29] text-white py-1.5 px-4 text-center text-[11px] font-bold uppercase tracking-[0.2em]">
-                🇿🇲 Delivering authentic Zambian flavours to the UK, USA, Canada & Europe
+                🇿🇲 Delivering authentic Zambian flavours to the UK, USA, Canada &amp; Europe
             </div>
 
             <nav className="w-full">
                 {/* Top Row: Logo, Search, Actions */}
-<<<<<<< HEAD
-                <div className="container flex h-20 items-center justify-between gap-8">
+                <div className="container flex h-28 items-center justify-between gap-8">
                     {/* Brand */}
-                    <Link href="/" className="flex-shrink-0 flex items-center group min-w-[140px]">
+                    <Link href="/" className="flex-shrink-0 flex items-center group min-w-[220px]">
                         <Image
                             src="https://res.cloudinary.com/v69xhq02/image/upload/v1790270680/ZamOrigins_logo-01_1.png"
                             alt="ZamOrigins"
-                            width={200}
-                            height={60}
-                            className="h-14 w-auto object-contain drop-shadow-sm"
+                            width={280}
+                            height={90}
+                            className="h-24 w-auto object-contain drop-shadow-sm"
                             priority
                             unoptimized
                         />
-=======
-                <div className="container flex h-16 items-center justify-between gap-8 py-2">
-                    {/* Brand */}
-                    <Link href="/" className="flex-shrink-0 flex items-center gap-2 group">
-                        <span className="text-xl md:text-2xl font-serif font-bold text-secondary tracking-tight">
-                            Zam<span className="text-primary italic">Origins</span>
-                        </span>
->>>>>>> 3073db419efd1948da2367bbd5ff94b9d24fa871
                     </Link>
 
                     {/* Search Bar - Desktop */}
