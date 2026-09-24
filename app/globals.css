@@ -1,0 +1,200 @@
+@import "tailwindcss";
+@import "shadcn/tailwind.css";
+
+@plugin "../node_modules/tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+
+    to {
+      height: 0;
+    }
+  }
+}
+
+/*
+  ZamOrigins Brand Colors (Updated)
+  Primary Terracotta: #A35C27
+  Deep Forest Green: #2D3A3A
+  Soft Cream background: #FDFBF7
+  Amber Gold Accent: #F59E0B
+*/
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  @media (width >=--theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+
+  @media (width >=1280px) {
+    max-width: 1280px;
+  }
+}
+
+@layer base {
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border, currentColor);
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  h1 {
+    @apply font-serif text-secondary tracking-tight text-5xl md:text-[48px] leading-[1.1];
+  }
+
+  h2 {
+    @apply font-serif text-secondary tracking-tight text-3xl md:text-[32px] leading-[1.2];
+  }
+
+  h3 {
+    @apply font-serif text-secondary tracking-tight text-xl md:text-[24px] leading-[1.3];
+  }
+
+  h4,
+  h5,
+  h6,
+  .font-serif {
+    @apply font-serif text-secondary tracking-tight;
+  }
+
+  body {
+    @apply bg-background text-secondary font-sans antialiased text-base md:text-[16px];
+  }
+}
+
+@layer base {
+  :root {
+    --background: 30 22% 98%;
+    /* #FCFAF8 */
+    --foreground: 0 0% 10%;
+    /* #1A1A1A */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    /* Shop Now CTA: #9B5625 */
+    --primary: 25 62% 38%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Brand Dark Brown: #563C29 (HSL: 25, 38%, 25%) */
+    --secondary: 25 38% 25%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 34 20% 94%;
+    --muted-foreground: 0 0% 45%;
+
+    /* Amber Gold Accent: #D99C3B (HSL: 36, 68%, 54%) */
+    --accent: 36 68% 54%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 34 10% 90%;
+    --input: 34 10% 90%;
+    --font-sans: var(--font-sans), "DM Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-serif: var(--font-serif), "DM Serif Display", "Instrument Serif", ui-serif, Georgia, serif;
+    --ring: 25 62% 38%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 25 30% 15%;
+    /* Darker Chocolate */
+    --foreground: 20 20% 99%;
+    --card: 25 30% 18%;
+    --card-foreground: 20 20% 99%;
+    --popover: 25 30% 18%;
+    --popover-foreground: 20 20% 99%;
+
+    --primary: 22 45% 40%;
+    /* Terracotta */
+    --primary-foreground: 20 20% 99%;
+
+    --secondary: 25 30% 22%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 25 30% 25%;
+    --muted-foreground: 0 0% 70%;
+
+    --border: 25 30% 25%;
+    --input: 25 30% 25%;
+    --ring: 20 20% 99%;
+
+    --accent: 25 30% 25%;
+    --accent-foreground: 20 20% 99%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 20 20% 99%;
+  }
+}
+
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

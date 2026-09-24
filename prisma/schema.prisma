@@ -1,0 +1,332 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------------------------------------------
+// USER & ACCOUNT
+// -----------------------------------------------------------------------------
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  passwordHash  String?
+  image         String?
+  role          UserRole  @default(CUSTOMER)
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  addresses         Address[]
+  orders            Order[]
+  reviews           Review[]
+  wishlists         Wishlist[]
+  analyticsEvents   AnalyticsEvent[]
+  subscriptions     SubscriptionPlan[]
+}
+
+enum UserRole {
+  CUSTOMER
+  ADMIN
+}
+
+model Address {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  firstName   String
+  lastName    String
+  company     String?
+  address1    String
+  address2    String?
+  city        String
+  state       String?
+  postalCode  String
+  country     String   @default("UK")
+  phone       String?
+  
+  isDefault   Boolean  @default(false)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  orders      Order[]
+}
+
+// -----------------------------------------------------------------------------
+// CATALOG
+// -----------------------------------------------------------------------------
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  image       String?
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  products    Product[]
+}
+
+model Product {
+  id          String    @id @default(cuid())
+  categoryId  String
+  category    Category  @relation(fields: [categoryId], references: [id])
+  
+  name        String
+  slug        String    @unique
+  description String
+  isFeatured  Boolean   @default(false)
+  isActive    Boolean   @default(true)
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  variants    ProductVariant[]
+  images      ProductImage[]
+  reviews     Review[]
+  wishlistItems Wishlist[]
+}
+
+model ProductVariant {
+  id          String    @id @default(cuid())
+  productId   String
+  product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  name        String    // e.g., "500g", "1kg", "Default"
+  sku         String?   @unique
+  price       Float     // Stored in GBP
+  compareAtPrice Float?
+  weight      Float     // Weight in grams/kg for shipping calculation
+  stockCount  Int       @default(0)
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  orderItems  OrderItem[]
+}
+
+model ProductImage {
+  id          String   @id @default(cuid())
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  url         String
+  alt         String?
+  isPrimary   Boolean  @default(false)
+  order       Int      @default(0)
+
+  createdAt   DateTime @default(now())
+}
+
+// -----------------------------------------------------------------------------
+// SALES & FULFILLMENT
+// -----------------------------------------------------------------------------
+
+model ShippingTier {
+  id          String   @id @default(cuid())
+  name        String   // e.g., "Standard UK", "Express UK"
+  description String?
+  price       Float    // Base price
+  minWeight   Float?   // Minimum weight condition
+  maxWeight   Float?   // Maximum weight condition
+  
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  orders      Order[]
+}
+
+model Coupon {
+  id            String   @id @default(cuid())
+  code          String   @unique
+  description   String?
+  discountType  DiscountType
+  discountValue Float
+  
+  minOrderValue Float?   // Minimum order amount to apply
+  maxUses       Int?     // Total usage limit
+  timesUsed     Int      @default(0)
+  
+  startDate     DateTime?
+  endDate       DateTime?
+  isActive      Boolean  @default(true)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  orders        Order[]
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED_AMOUNT
+  FREE_SHIPPING
+}
+
+model Order {
+  id              String        @id @default(cuid())
+  orderNumber     String        @unique // e.g., "ZAM-1001"
+  userId          String?       // Nullable for guest checkout (v2)
+  user            User?         @relation(fields: [userId], references: [id])
+  
+  addressId       String?       // Shipping address reference
+  address         Address?      @relation(fields: [addressId], references: [id])
+  
+  shippingTierId  String?
+  shippingTier    ShippingTier? @relation(fields: [shippingTierId], references: [id])
+  
+  couponId        String?
+  coupon          Coupon?       @relation(fields: [couponId], references: [id])
+  
+  status          OrderStatus   @default(PENDING)
+  paymentStatus   PaymentStatus @default(UNPAID)
+  
+  subtotal        Float
+  shippingCost    Float
+  discountAmount  Float         @default(0)
+  total           Float
+  
+  notes           String?
+  
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  items           OrderItem[]
+  shipments       Shipment[]
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+  FAILED
+  REFUNDED
+}
+
+model OrderItem {
+  id              String          @id @default(cuid())
+  orderId         String
+  order           Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  variantId       String
+  variant         ProductVariant  @relation(fields: [variantId], references: [id])
+  
+  quantity        Int
+  priceAtTime     Float           // Price of item when ordered
+  
+  createdAt       DateTime        @default(now())
+}
+
+model Shipment {
+  id              String   @id @default(cuid())
+  orderId         String
+  order           Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  trackingNumber  String?
+  carrier         String?  // e.g., "Royal Mail", "DPD"
+  status          ShipmentStatus @default(PRE_TRANSIT)
+  
+  shippedAt       DateTime?
+  deliveredAt     DateTime?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+enum ShipmentStatus {
+  PRE_TRANSIT
+  IN_TRANSIT
+  OUT_FOR_DELIVERY
+  DELIVERED
+  RETURNED
+}
+
+// -----------------------------------------------------------------------------
+// USER ENGAGEMENT
+// -----------------------------------------------------------------------------
+
+model Review {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  rating      Int      // 1-5
+  comment     String?
+  isVerified  Boolean  @default(false) // Whether user actually bought it
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Wishlist {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  createdAt   DateTime @default(now())
+
+  @@unique([userId, productId])
+}
+
+// -----------------------------------------------------------------------------
+// SUBSCRIPTION (V2 PREP)
+// -----------------------------------------------------------------------------
+
+model SubscriptionPlan {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  planType    String   // e.g., "Taste of Home Box"
+  status      SubStatus @default(ACTIVE)
+  nextBilling DateTime?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum SubStatus {
+  ACTIVE
+  PAUSED
+  CANCELLED
+  PAYMENT_FAILED
+}
+
+// -----------------------------------------------------------------------------
+// ANALYTICS (V2 PREP)
+// -----------------------------------------------------------------------------
+
+model AnalyticsEvent {
+  id          String   @id @default(cuid())
+  eventType   String   // e.g., "PAGE_VIEW", "ADD_TO_CART", "CHECKOUT"
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  metadata    Json?    // Contextual data (e.g., path, product id)
+  
+  createdAt   DateTime @default(now())
+}
