@@ -22,6 +22,7 @@ export default function Home() {
     { name: "Wild Mushrooms", products: "5 Products", image: "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?auto=format&fit=crop&q=80&w=600" },
   ];
 
+<<<<<<< HEAD
   const drinks = [
     { name: "Fanta Bottle", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270623/Fanta_Bottle.jpg" },
     { name: "Fanta Disposable", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270622/Fanta_Disposable.jpg" },
@@ -31,6 +32,8 @@ export default function Home() {
     { name: "Special Blend", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270621/WhatsApp_Image_2026-09-24_at_18.59.06_12.jpg" },
   ];
 
+=======
+>>>>>>> 3073db419efd1948da2367bbd5ff94b9d24fa871
   const signature = [
     {
       id: "kapenta",
@@ -166,6 +169,7 @@ export default function Home() {
         </div>
       </section>
 
+<<<<<<< HEAD
       {/* SECTION 1b: Drinks Category */}
       <section className="py-20 bg-white border-t border-secondary/5">
         <div className="container">
@@ -211,6 +215,8 @@ export default function Home() {
         </div>
       </section>
 
+=======
+>>>>>>> 3073db419efd1948da2367bbd5ff94b9d24fa871
       {/* SECTION 2: Signature Selection (Featured Elevated) */}
       <section className="py-20 bg-white border-y border-secondary/5">
         <div className="container text-center mb-20 space-y-4">

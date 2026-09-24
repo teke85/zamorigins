@@ -1,7 +1,10 @@
 "use client";
 
 import Link from "next/link";
+<<<<<<< HEAD
 import Image from "next/image";
+=======
+>>>>>>> 3073db419efd1948da2367bbd5ff94b9d24fa871
 import { Search, ShoppingBag, User, Heart, Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -27,6 +30,7 @@ export function Navbar() {
 
             <nav className="w-full">
                 {/* Top Row: Logo, Search, Actions */}
+<<<<<<< HEAD
                 <div className="container flex h-20 items-center justify-between gap-8">
                     {/* Brand */}
                     <Link href="/" className="flex-shrink-0 flex items-center group min-w-[140px]">
@@ -39,6 +43,14 @@ export function Navbar() {
                             priority
                             unoptimized
                         />
+=======
+                <div className="container flex h-16 items-center justify-between gap-8 py-2">
+                    {/* Brand */}
+                    <Link href="/" className="flex-shrink-0 flex items-center gap-2 group">
+                        <span className="text-xl md:text-2xl font-serif font-bold text-secondary tracking-tight">
+                            Zam<span className="text-primary italic">Origins</span>
+                        </span>
+>>>>>>> 3073db419efd1948da2367bbd5ff94b9d24fa871
                     </Link>
 
                     {/* Search Bar - Desktop */}
