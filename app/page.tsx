@@ -23,12 +23,12 @@ export default function Home() {
   ];
 
   const drinks = [
-    { name: "Fanta Bottle", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270623/Fanta_Bottle.jpg" },
-    { name: "Fanta Disposable", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270622/Fanta_Disposable.jpg" },
-    { name: "Appy Apple", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270622/Appy_Apple.jpg" },
-    { name: "Coca-Cola", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270621/Coca_Cola_Soft_DRink.jpg" },
-    { name: "Milkit MilkShake", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270621/Milkit_MilkShake.jpg" },
-    { name: "Special Blend", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270621/WhatsApp_Image_2026-09-24_at_18.59.06_12.jpg" },
+    { name: "Fanta Bottle", slug: "fanta-bottle", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270623/Fanta_Bottle.jpg" },
+    { name: "Fanta Disposable", slug: "fanta-disposable", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270622/Fanta_Disposable.jpg" },
+    { name: "Appy Apple", slug: "appy-apple", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270622/Appy_Apple.jpg" },
+    { name: "Coca-Cola", slug: "coca-cola", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270621/Coca_Cola_Soft_DRink.jpg" },
+    { name: "Milkit MilkShake", slug: "milkit-milkshake", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270621/Milkit_MilkShake.jpg" },
+    { name: "Appy Lemon", slug: "appy-lemon", image: "https://res.cloudinary.com/v69xhq02/image/upload/v1790270621/WhatsApp_Image_2026-09-24_at_18.59.06_12.jpg" },
   ];
 
   const signature = [
@@ -185,7 +185,7 @@ export default function Home() {
             {drinks.map((drink, idx) => (
               <Link
                 key={drink.name}
-                href="/shop"
+                href={`/drinks/${drink.slug}`}
                 className="group relative aspect-[3/4] overflow-hidden rounded-2xl bg-white shadow-sm border border-secondary/5 transition-all duration-700 hover:-translate-y-2 hover:shadow-xl"
                 style={{ animationDelay: `${idx * 100}ms` }}
               >
@@ -207,7 +207,7 @@ export default function Home() {
           </div>
 
           <div className="mt-12 text-center">
-            <Link href="/shop" className="group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-secondary hover:text-primary transition-all border-b border-primary/20 pb-2">
+            <Link href="/drinks" className="group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-secondary hover:text-primary transition-all border-b border-primary/20 pb-2">
               View All Drinks <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>

@@ -4,17 +4,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { Search, ShoppingBag, User, Heart, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useCart } from "@/lib/cart-context";
 
 export function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { cartCount } = useCart();
 
     const categories = [
-        { label: "All Categories", href: "/shop" },
+        { label: "All Products", href: "/shop" },
+        { label: "Dry Foods", href: "/shop/dry-foods" },
+        { label: "Drinks", href: "/drinks" },
+        { label: "Beauty & Wellness", href: "/shop/beauty-and-wellness" },
         { label: "Best Sellers", href: "/shop?sort=best-sellers" },
-        { label: "New products", href: "/shop?sort=new" },
-        { label: "Food and drink", href: "/shop/food-and-drink" },
-        { label: "Dry foods", href: "/shop/dry-foods" },
-        { label: "Beauty and wellness", href: "/shop/beauty-and-wellness" },
+        { label: "New Arrivals", href: "/shop?sort=new" },
     ];
 
     return (
@@ -63,9 +65,11 @@ export function Navbar() {
                         </Link>
                         <Link href="/cart" className="p-2 relative group hover:text-primary transition-colors">
                             <ShoppingBag className="w-5 h-5" />
-                            <span className="absolute top-1 right-1 bg-primary text-white text-[9px] font-bold h-3.5 w-3.5 rounded-full flex items-center justify-center">
-                                0
-                            </span>
+                            {cartCount > 0 && (
+                                <span className="absolute top-1 right-1 bg-primary text-white text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center">
+                                    {cartCount > 9 ? "9+" : cartCount}
+                                </span>
+                            )}
                         </Link>
                         <button
                             className="md:hidden p-2"
